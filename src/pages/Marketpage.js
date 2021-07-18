@@ -28,9 +28,9 @@ function Marketpage() {
                     </div>
                 </div>
                 <div className="buySellContainer">
-                    <img id="sellImg" className="marketplaceImg" src={sellImage} alt="" width="477" height="693"  onClick={toSell}/>
+                    <img id="sellImg" className="marketplaceImg" src={sellImage} alt="" width="477" height="693"/>
                     <div className="middle">
-                        <div className="sellText">Sell</div>
+                        <div className="sellText" onClick={toSell}>Sell</div>
                     </div>
                 </div>
             </div>
