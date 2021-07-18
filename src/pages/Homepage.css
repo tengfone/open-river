@@ -1,0 +1,38 @@
+.hero-section {
+    padding: 120px 140px;
+}
+
+.hero-content {
+    width: 500px;
+    padding-top: 80px;
+}
+
+.hero-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 200px;
+}
+
+.hero-form {
+    float: left;
+}
+
+.ledgerButton {
+    margin-left: 20px;
+}
+
+.h1 {
+    padding-bottom: 10px;
+}
+
+.heroImage {
+    border-radius: 10px;
+    -webkit-filter: drop-shadow(5px 5px 5px #C4C4C4);
+    filter: drop-shadow(5px 5px 5px #C4C4C4);
+}
+
+.heroImage:hover {
+    transform: scale(1.1);
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+}

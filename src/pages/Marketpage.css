@@ -1,0 +1,69 @@
+.market-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 430px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.buySellContainer {
+    position: relative;
+}
+
+.marketplaceImg {
+    border-radius: 10px;
+    -webkit-filter: drop-shadow(5px 5px 5px #C4C4C4);
+    filter: drop-shadow(5px 5px 5px #C4C4C4);
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.sellImg {
+    opacity: 1;
+    border-radius: 10px;
+    -webkit-filter: drop-shadow(5px 5px 5px #C4C4C4);
+    filter: drop-shadow(5px 5px 5px #C4C4C4);
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+  
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+  
+.buySellContainer:hover .marketplaceImg  {
+    opacity: 0.3;
+}
+
+.buySellContainer:hover .middle {
+    opacity: 1;
+}
+
+.buyText {
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    padding: 10px 32px;
+    border-radius: 4px;
+}
+
+.sellText {
+    background-color: #DC3545;
+    color: white;
+    font-size: 16px;
+    padding: 10px 32px;
+    border-radius: 4px;
+}
