@@ -1,0 +1,112 @@
+{
+    "assets": [
+      {
+        "id": "0x0a083a1fe7d072c4f108b9bbd8037998", 
+        "title": "Next Body",
+        "price": 2,
+        "owner_name": "Alfarr Miri",
+        "img": "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=653&q=80",
+        "owner_address": "0x67a6bba11886c53e701618959ca4f85a",
+        "author_address": "0x67a6bba11886c53e701618959ca4f85a"
+      },
+      {
+        "id": "0x6ca992d23b807994157ae4874814bcff", 
+        "title": "The Blue Wizards",
+        "price": 3,
+        "owner_name": "Raeburn Klaus",
+        "img": "https://images.unsplash.com/photo-1534620420030-873526e5821a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0JTIwd29ya3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60", 
+        "owner_address": "0x73f77db89ffef43d0d6d473bb5065df8",
+        "author_address": "0x73f77db89ffef43d0d6d473bb5065df8"
+      },
+      {
+        "id": "0x3419a3ae72371b910bd0cdebb8b17172", 
+        "title": "Kiss of Hunter",
+        "price": 0.2,
+        "owner_name": "Clancy Gavino",
+        "img": "https://images.unsplash.com/photo-1544967082-d9d25d867d66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXJ0JTIwd29ya3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0x167d9ac5297027046d70174128fefff2",
+        "author_address": "0x167d9ac5297027046d70174128fefff2"
+      },
+      {
+        "id": "0xb0c0dbc61e40c9b88d9fd95460802187", 
+        "title": "The Tower's Birth",
+        "price": 0.5,
+        "owner_name": "Uzma Ejiro",
+        "img": "https://images.unsplash.com/photo-1619199099200-f9adb7e64c39?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGFydCUyMHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0xf5c71b87156a315654d110ef4280144a",
+        "author_address": "0xf5c71b87156a315654d110ef4280144a"
+      },
+      {
+        "id": "0x0a96beecacc0c3d606d9f7080012a9ec", 
+        "title": "The Pirates of the Secrets",
+        "price": 0.78,
+        "owner_name": "Toni Pàdraig",
+        "img": "https://images.unsplash.com/photo-1619199003576-7cf4e1f7b25f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGFydCUyMHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0xcc63ebb50a754bb2b64899771dc3e070",
+        "author_address": "0xcc63ebb50a754bb2b64899771dc3e070"
+      },
+      {
+        "id": "0x810d229bd49ca3e719ce8cb73689358a", 
+        "title": "Words in the Birch",
+        "price": 3,
+        "owner_name": "Haides Juro",
+        "img": "https://images.unsplash.com/photo-1619198943838-cf67f2f019c5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGFydCUyMHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0xecebe8054d59ccc3d25ecae1b10ba18a",
+        "author_address": "0xecebe8054d59ccc3d25ecae1b10ba18a"
+      },
+      {
+        "id": "0xc01e052191b2cd6696c04b45c4d1d8fa", 
+        "title": "Purple Girl",
+        "price": 5,
+        "owner_name": "Patrick Ljuba",
+        "img": "https://images.unsplash.com/photo-1559221498-14881115c728?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzF8fGFydCUyMHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0x07f16675f22c28eece583feee3ddf595",
+        "author_address": "0x07f16675f22c28eece583feee3ddf595"
+      },
+      {
+        "id": "0x6642c54ed2f009df9a73543f5537bb37", 
+        "title": "Jyoti Yasin",
+        "price": 11,
+        "owner_name": "Sigrun Bryanna",
+        "img": "https://images.unsplash.com/photo-1564800718579-749680044765?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzN8fGFydCUyMHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0x243fa36c012d602958a67cd8a0530671",
+        "author_address": "0x243fa36c012d602958a67cd8a0530671"
+      },
+      {
+        "id": "0x731cbbf7570a7509048db83f2fe17a6a", 
+        "title": "Bride of Darkness",
+        "price": 4.8,
+        "owner_name": "Pramod Gaye",
+        "img": "https://images.unsplash.com/photo-1496198253360-4c44aa485f6c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODR8fGFydCUyMHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0x839caab5fb9717712d92adbbfb92db09",
+        "author_address": "0x243fa36c012d602958a67cd8a0530671"
+      },
+      {
+        "id": "0x88deb0ef74693a7db9d8f46c2062b46f", 
+        "title": "The Academy's Twilight",
+        "price": 3.9,
+        "owner_name": "Sébire Alban",
+        "img": "https://images.unsplash.com/photo-1589828994425-cee7c6e8dbf8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA4fHxhcnQlMjB3b3JrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0xaea12487683256dcd9436726227bbd72",
+        "author_address": "0xaea12487683256dcd9436726227bbd72"
+      },
+      {
+        "id": "0x6d67c8e04889293fc102bf635c194ca7", 
+        "title": "The Academy's Twilight",
+        "price": 2,
+        "owner_name": "Naveed Eveline",
+        "img": "https://images.unsplash.com/photo-1519249114921-4cb3e3e298a9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIwfHxhcnQlMjB3b3JrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0xc092fb908a8c27a6edec79d93ff6159e",
+        "author_address": "0xc092fb908a8c27a6edec79d93ff6159e"
+      },
+      {
+        "id": "0xd88cc7d87556eb0988545361fc10f1ab", 
+        "title": "Thief in the Kiss",
+        "price": 3,
+        "owner_name": "Austin Jani",
+        "img": "https://images.unsplash.com/photo-1619198900795-0db40afaca4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE4fHxhcnQlMjB3b3JrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+        "owner_address": "0x3306fff1022ca0c55ba4ddc59c8c24d1",
+        "author_address": "0x3306fff1022ca0c55ba4ddc59c8c24d1"
+      }
+    ]
+  }

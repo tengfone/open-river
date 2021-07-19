@@ -31,7 +31,7 @@ function Homepage() {
                     </div>
                 </div>
                 <div className="heroImage">
-                    <img src={heroImage} alt="" width="550" height="515"/>
+                    <img id="heroImage" src={heroImage} alt="" width="550" height="515"/>
                 </div>
             </div>
         </div>

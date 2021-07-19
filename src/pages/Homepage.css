@@ -26,9 +26,12 @@
 }
 
 .heroImage {
-    border-radius: 10px;
     -webkit-filter: drop-shadow(5px 5px 5px #C4C4C4);
     filter: drop-shadow(5px 5px 5px #C4C4C4);
+}
+
+#heroImage {
+    border-radius: 10px;
 }
 
 .heroImage:hover {
