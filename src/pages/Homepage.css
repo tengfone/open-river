@@ -1,16 +1,17 @@
 .hero-section {
-    padding: 120px 140px;
+    padding: 15vh 60px 15vh 60px;
 }
 
 .hero-content {
     width: 500px;
-    padding-top: 80px;
+    padding: 80px 60px 0px 0px;
 }
 
 .hero-flex-container {
     display: flex;
     justify-content: space-between;
-    padding: 0px 200px;
+    max-width: 1180px;
+    margin: Auto;
 }
 
 .hero-form {
