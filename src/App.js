@@ -42,7 +42,36 @@ class App extends Component {
 
     this.setState({ loading: false })
   }
+  async pullAllTransactions(){
+    const transactionCount = await App.OpenRiver.transactionCount()
 
+    for(var i=1; i<=transactionCount; i++){
+      const transaction = await App.OpenRiver.transactions(i)
+      const transactionId = transaction[0].toNumber()
+      const transactionValue = transaction[1].toNumber()
+      const addrFrom = transaction[2]
+      const addrTo = transaction[3]
+      const imgHash = transaction[4]
+      //do frontend thing here
+    }
+  }
+  
+  async pullMyInventory(){
+    // to find the address of the user, we can use msg.sender in the .sol file
+    const artworkCount = await App.OpenRiver.artworkCount()
+    for(var i=1; i<=artworkCount; i++){
+      const artwork = await App.OpenRiver.artworks(i)
+      const ID = await App.OpenRiver.getID()
+      if(artwork[3] == ID){
+        const artwork_id = artwork[0].toNumber()
+        const artwork_name = artwork[1].toString()
+        const artwork_price = artwork[2].toNumber()
+        const imgHash = artwork[5]
+        //do frontend thing here
+      }
+    }
+
+  }
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
