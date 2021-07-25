@@ -3,10 +3,26 @@ import '../App.css'
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap'
 
-function Sellpage() {
+function Sellpage({ props , updateParentState }) {
+
+    const openRiver = props.openRiver
+    const account = props.account
 
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+
+    const uploadArtwork = (name, price, imageHash) => {
+        openRiver.methods.uploadArtwork(name, price, imageHash)
+            .send({ from: account })
+            .once('receipt', (receipt) => {
+                console.log("Artwork Created")
+                updateParentState(receipt.events.ArtworkCreated.returnValues)
+            });
+    }
+
+    const tempFunction = () => {
+        uploadArtwork('Artwork1', 9, 'fiof31gog1i')
+    }
 
     const setField = (field, value) => {
         setForm({
@@ -107,6 +123,7 @@ function Sellpage() {
                 </Form.Group>
                 <Button type='submit' onClick={handleSubmit}>Sell!</Button>
             </Form>
+            <Button onClick={tempFunction}>Temp Button</Button>
         </div>
     )
 }

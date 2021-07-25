@@ -1,6 +1,8 @@
 import React from 'react'
 
-function Ledgerpage() {
+function Ledgerpage({props}) {
+
+    
 
     return (
         <div>
