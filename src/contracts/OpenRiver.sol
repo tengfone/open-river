@@ -44,16 +44,20 @@ contract OpenRiver{
     	productName = "Project";
   	}
 
-  	function uploadArtwork(string memory _name, uint _price, string memory _imgHash) public {
+  	function uploadArtwork(string memory _name, uint _price, string memory _imgHash) public payable{
   		require(bytes(_name).length > 0);
   		require(_price > 0);
   		require(bytes(_imgHash).length > 0);
+  		address payable _sender;
+  		_sender = payable(msg.sender);
   		artworkCount ++;
-  		artworks[artworkCount] = Artwork(artworkCount,_name,_price,msg.sender,false,_imgHash);
-  		emit ArtworkCreated(artworkCount,_name,_price,msg.sender,false,_imgHash);
+  		artworks[artworkCount] = Artwork(artworkCount,_name,_price,_sender,false,_imgHash);
+  		emit ArtworkCreated(artworkCount,_name,_price,_sender,false,_imgHash);
   	}
 
   	function purchaseProduct(uint _id) public payable {
+  		address payable _sender;
+  		_sender = payable(msg.sender);
   		Artwork memory _artwork = artworks[_id];
   		address payable _seller = _artwork.owner;
   		require(_artwork.id > 0 && _artwork.id <= artworkCount);
@@ -61,13 +65,12 @@ contract OpenRiver{
   		require(!_artwork.isPurchased);
   		require(_seller != msg.sender, "This is his own artwork!");
   		transactionCount ++;
-
-  		address(_seller).transfer(msg.value);
-  		_artwork.purchased = true;
-  		transactions[transactionCount] = Transaction(transactionCount,_artwork.price,_artwork.owner,msg.sender,_artwork.imgHash);
-  		_artwork.owner = msg.sender;
+  		_seller.transfer(msg.value);
+  		_artwork.isPurchased = true;
+  		transactions[transactionCount] = Transaction(transactionCount,_artwork.price,_artwork.owner,_sender,_artwork.imgHash);
+  		_artwork.owner = payable(msg.sender);
   		artworks[_id] = _artwork;
-  		emit ArtworkSold(artworkCount,_artwork.name,_artwork.price,msg.sender,true);
+  		emit ArtworkSold(artworkCount,_artwork.name,_artwork.price,_sender,true,_artwork.imgHash);
   	}
 
   	//check the data type of msg.sender
