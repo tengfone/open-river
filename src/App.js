@@ -28,12 +28,14 @@ class App extends Component {
       ethBalance: 0,
       openRiver: {},
       totalArtwork: [],
-      loading: true
+      loading: true,
+      allTransactions:[]
     }
   }
   async componentDidMount() {
     await this.loadWeb3()
     await this.loadBlockchainData()
+    await this.pullAllTransactions()
   }
 
   async loadBlockchainData() {
@@ -44,7 +46,7 @@ class App extends Component {
     this.setState({ account: accounts[0], ethBalance: ethBalance })
 
     const networkId = await web3.eth.net.getId()
-
+    let totalArtwork = [];
     // Load OpenRiver Contract
     const openRiverData = OpenRiver.networks[networkId]
     if (openRiverData) {
@@ -52,13 +54,13 @@ class App extends Component {
       this.setState({ openRiver })
       openRiver.methods.artworkCount().call().then(value => {
         for (let i = 1; i <= value; i++) {
-          const product = openRiver.methods.artworks(i).call().then(products => {
-            this.setState({
-              totalArtwork: [...this.state.totalArtwork, product]
-            },
-              () => console.log(this.state))
+          openRiver.methods.artworks(i).call().then(products => {
+            totalArtwork.push(products) 
           })
         }
+        this.setState({
+          totalArtwork: totalArtwork
+        })
       })
     } else {
       window.alert('openRiver contract not deployed to detected network.')
@@ -69,17 +71,19 @@ class App extends Component {
   }
 
   async pullAllTransactions() {
-    const transactionCount = await App.OpenRiver.transactionCount()
-
-    for (var i = 1; i <= transactionCount; i++) {
-      const transaction = await App.OpenRiver.transactions(i)
-      const transactionId = transaction[0].toNumber()
-      const transactionValue = transaction[1].toNumber()
-      const addrFrom = transaction[2]
-      const addrTo = transaction[3]
-      const imgHash = transaction[4]
-      //do frontend thing here
+    const web3 = window.web3
+    const latest = await web3.eth.getBlockNumber()
+    let allTransactions = []
+    for (var i=0; i < latest; i++) {
+      const block = await web3.eth.getBlock(latest - i)
+      for (let txHash of block.transactions) {
+        let tx = await web3.eth.getTransaction(txHash);
+        allTransactions.push(tx)
+      }
     }
+    this.setState({
+      allTransactions: allTransactions
+    })
   }
 
   async pullMyInventory() {

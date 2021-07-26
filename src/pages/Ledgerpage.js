@@ -1,14 +1,16 @@
 import React from 'react'
+import LedgerList from "./LedgerList"
+import '../App.css'
 
 function Ledgerpage({props}) {
-
-    
-
     return (
-        <div>
-            <h1>Ledger Page</h1>
-            <p>To view all transcations</p>
-        </div>
+        <>
+            <div className="ledger">
+                <div className="ledger-section">
+                    <LedgerList allTx={props.allTransactions}/>                     
+                </div>
+            </div>
+        </>
     )
 }
 

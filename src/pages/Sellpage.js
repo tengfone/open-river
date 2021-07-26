@@ -2,6 +2,7 @@ import { React, useState } from 'react'
 import '../App.css'
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap'
+import {randomUrls} from '../constants'
 
 function Sellpage({ props , updateParentState }) {
 
@@ -18,10 +19,6 @@ function Sellpage({ props , updateParentState }) {
                 console.log("Artwork Created")
                 updateParentState(receipt.events.ArtworkCreated.returnValues)
             });
-    }
-
-    const tempFunction = () => {
-        uploadArtwork('Artwork1', 9, 'fiof31gog1i')
     }
 
     const setField = (field, value) => {
@@ -46,6 +43,8 @@ function Sellpage({ props , updateParentState }) {
             setErrors(newErrors)
         } else {
             // No errors! Put any logic here for the form submission!
+            const random = Math.floor(Math.random() * randomUrls.length);
+            uploadArtwork(form.name, form.price, randomUrls[random])
             console.log(form)
             console.log("Submitted")
         }
@@ -58,15 +57,15 @@ function Sellpage({ props , updateParentState }) {
         if (!name || name === '') newErrors.name = 'Cannot be blank!'
         else if (name.length > 30) newErrors.name = 'name is too long!'
         // type errors
-        if (!type || type === '') newErrors.type = 'Select a Type'
+        // if (!type || type === '') newErrors.type = 'Select a Type'
         // file errors
-        if (!file || file === '') {
-            newErrors.file = 'Upload an image!'
-        }
+        // if (!file || file === '') {
+        //     newErrors.file = 'Upload an image!'
+        // }
         // price errors
         if (!price || price < 0) newErrors.price = 'Must be more than 0 ETH'
         // description errors
-        if (!description || description === '') newErrors.description = 'Description be blank!'
+        // if (!description || description === '') newErrors.description = 'Description be blank!'
         return newErrors
     }
 
@@ -86,6 +85,7 @@ function Sellpage({ props , updateParentState }) {
                 <Form.Group>
                     <Form.Label>Type</Form.Label>
                     <Form.Control
+                        disabled
                         as='select'
                         onChange={e => setField('type', e.target.value)}
                         isInvalid={!!errors.type}
@@ -100,7 +100,7 @@ function Sellpage({ props , updateParentState }) {
                 </Form.Group>
                 <Form.Group controlId="formFile">
                     <Form.Label>Upload File Image</Form.Label>
-                    <Form.Control onChange={e => setField('file', e.target.files)} isInvalid={!!errors.file} type="file" />
+                    <Form.Control disabled onChange={e => setField('file', e.target.files)} isInvalid={!!errors.file} type="file" />
                     <Form.Control.Feedback type='invalid'>{errors.file}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
@@ -115,6 +115,7 @@ function Sellpage({ props , updateParentState }) {
                 <Form.Group>
                     <Form.Label>Description</Form.Label>
                     <Form.Control
+                        disabled
                         as='textarea'
                         onChange={e => setField('description', e.target.value)}
                         isInvalid={!!errors.description}
@@ -123,7 +124,7 @@ function Sellpage({ props , updateParentState }) {
                 </Form.Group>
                 <Button type='submit' onClick={handleSubmit}>Sell!</Button>
             </Form>
-            <Button onClick={tempFunction}>Temp Button</Button>
+            {/* <Button onClick={tempFunction}>Temp Button</Button> */}
         </div>
     )
 }

@@ -60,10 +60,10 @@ contract OpenRiver{
   		_sender = payable(msg.sender);
   		Artwork memory _artwork = artworks[_id];
   		address payable _seller = _artwork.owner;
-//  		require(_artwork.id > 0 && _artwork.id <= artworkCount);
-//  		require(msg.value >= _artwork.price);
-//  		require(!_artwork.isPurchased);
-//  		require(_seller != msg.sender, "This is his own artwork!");
+ 		require (_artwork.id <= artworkCount);
+ 		require(msg.value >= _artwork.price, "You do not have enough money");
+ 		require(!_artwork.isPurchased);
+ 		require(_seller != msg.sender, "This is his own artwork!");
   		transactionCount ++;
   		_seller.transfer(msg.value);
   		_artwork.isPurchased = true;

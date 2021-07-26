@@ -40,3 +40,12 @@
 .buy-section {
   margin: 0px 50px 50px 50px;
 }
+
+.ledger {
+  background-color: wheat;
+}
+
+.ledger-section {
+  margin: 0px 50px;
+  padding-top: 30px;
+}
