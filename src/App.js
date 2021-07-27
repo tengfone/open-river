@@ -29,7 +29,8 @@ class App extends Component {
       openRiver: {},
       totalArtwork: [],
       loading: true,
-      allTransactions:[]
+      allTransactions:[],
+      myArtWokrs: []
     }
   }
   async componentDidMount() {
@@ -44,9 +45,9 @@ class App extends Component {
     var ethBalance = await web3.eth.getBalance(accounts[0])
     ethBalance = web3.utils.fromWei(ethBalance, 'ether');
     this.setState({ account: accounts[0], ethBalance: ethBalance })
-
     const networkId = await web3.eth.net.getId()
     let totalArtwork = [];
+    let myArtWokrs = []
     // Load OpenRiver Contract
     const openRiverData = OpenRiver.networks[networkId]
     if (openRiverData) {
@@ -55,11 +56,18 @@ class App extends Component {
       openRiver.methods.artworkCount().call().then(value => {
         for (let i = 1; i <= value; i++) {
           openRiver.methods.artworks(i).call().then(products => {
-            totalArtwork.push(products) 
+            if (products.owner = accounts[0].toLowerCase())  {
+              myArtWokrs.push(products)
+            } 
+
+            if (!products.isPurchased) {
+              totalArtwork.push(products)
+            } 
           })
         }
         this.setState({
-          totalArtwork: totalArtwork
+          totalArtwork: totalArtwork,
+          myArtWokrs: myArtWokrs
         })
       })
     } else {
@@ -77,8 +85,10 @@ class App extends Component {
     for (var i=0; i < latest; i++) {
       const block = await web3.eth.getBlock(latest - i)
       for (let txHash of block.transactions) {
-        let tx = await web3.eth.getTransaction(txHash);
-        allTransactions.push(tx)
+        let tx = await web3.eth.getTransaction(txHash)
+        let txR = await web3.eth.getTransactionReceipt(txHash);
+        let merged = {...tx, ...txR}
+        allTransactions.push(merged)
       }
     }
     this.setState({
@@ -86,22 +96,6 @@ class App extends Component {
     })
   }
 
-  async pullMyInventory() {
-    // to find the address of the user, we can use msg.sender in the .sol file
-    const artworkCount = await App.OpenRiver.artworkCount()
-    for (var i = 1; i <= artworkCount; i++) {
-      const artwork = await App.OpenRiver.artworks(i)
-      const ID = await App.OpenRiver.getID()
-      if (artwork[3] == ID) {
-        const artwork_id = artwork[0].toNumber()
-        const artwork_name = artwork[1].toString()
-        const artwork_price = artwork[2].toNumber()
-        const imgHash = artwork[5]
-        //do frontend thing here
-      }
-    }
-
-  }
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)

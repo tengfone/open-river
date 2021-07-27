@@ -1,0 +1,84 @@
+.profile-section {
+    position: relative;
+}
+
+.banner-bg {
+    width: 100%;
+    height: 40vh;
+    background-color: #E5E5E5;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.profile {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 30vh;
+}
+
+.avatar {
+    width: 200px;
+    margin-bottom: 20px;
+    border: 5px white solid;
+    border-radius: 100px;
+}
+
+.copy-address {
+    margin-bottom: -10px;
+}
+
+
+.copy-btn, p {
+    background-color: transparent;
+    border:none;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.copy-btn {
+    margin-bottom: 17px;
+    margin-left: 5px;
+}
+
+.value-details {
+    display: block;
+    width: auto;
+    position: absolute;
+    top: 20px;
+    right:30px;
+    background-color: rgba(255,255,255, 0.7);
+    height: 43px;
+    padding: 0px 8px 0px 6px;
+    border-radius: 10px;
+  }
+
+  .value-details p {
+      font-size: 30px;
+  }
+  
+  .value-details img{
+    margin-top: 8px
+  }
+  
+  .value-details p{
+    float: right;
+    margin-left: 5px;
+  }
+
+  .asset-container {
+      margin-bottom: 100px;
+  }
+
+  #pbannerimg {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+     
+  }
+

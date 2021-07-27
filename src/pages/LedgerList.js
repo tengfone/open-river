@@ -30,12 +30,12 @@ const LedgerList = ({allTx}) => {
                             </div>
                             
                         </div>
-                        <div className="to-address" hidden={tx.to ? false: true}>
-                        <div className="label">
-                                TO ADDRESS
-                            </div>
+                        <div className="to-address" >
+                       
+                                {tx.to ?   <div className="label">TO CONTRACT ADDRESS</div> : <div className="label">CREATED CONTRACT ADDRESS</div>}
                             <div className="from-val">
-                                {tx.to}
+                                {tx.to ? tx.to : tx.contractAddress} 
+            
                             </div>
                         </div>
                         <div className="gas-block">
