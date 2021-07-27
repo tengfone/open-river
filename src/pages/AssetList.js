@@ -1,6 +1,6 @@
 import "./AssetList.css";
 import ethIcon from '../assets/eth_icon.svg'
-import { Modal, Button, Spinner } from 'react-bootstrap'
+import { Modal, Button, Spinner, Container, Row, Col } from 'react-bootstrap'
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
   const [modalShow, setModalShow] = useState(false)
   const [selectedIndex, setIndex] = useState()
 
+  console.log(assets)
   // purchaseProducts(asset.id, asset.price)
 
   // Buying Page
@@ -138,8 +139,37 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
+          <Container>
+            <Row>
+              <Col xs={12} md={8}>
+                .col-xs-12 .col-md-8
+              </Col>
+              <Col xs={6} md={4}>
+                .col-xs-6 .col-md-4
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs={6} md={4}>
+                .col-xs-6 .col-md-4
+              </Col>
+              <Col xs={6} md={4}>
+                .col-xs-6 .col-md-4
+              </Col>
+              <Col xs={6} md={4}>
+                .col-xs-6 .col-md-4
+              </Col>
+            </Row>
+          </Container>
+
           <h4>Description</h4>
+          <p>{props.asset.description}</p>
           <img style={{ height: 'auto', width: 'auto', maxWidth: '300px', maxHeight: '300px' }} src={props.asset.imgHash} />
+          <div className="">
+            <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
+            <p>{props.asset.price}</p>
+          </div>
         </Modal.Body>
 
         {

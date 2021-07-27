@@ -51,6 +51,7 @@ contract OpenRiver{
   		require(bytes(_name).length > 0);
   		require(_price > 0);
   		require(bytes(_imgHash).length > 0);
+		require(bytes(_description).length > 0);
   		address payable _sender;
   		_sender = payable(msg.sender);
   		artworkCount ++;

@@ -14,8 +14,8 @@ function Sellpage({ props, updateParentState }) {
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
 
-    const uploadArtwork = (name, price, imageHash) => {
-        openRiver.methods.uploadArtwork(name, price, imageHash)
+    const uploadArtwork = (name, price, description, imageHash) => {
+        openRiver.methods.uploadArtwork(name, price, description, imageHash)
             .send({ from: account })
             .once('receipt', (receipt) => {
                 console.log("Artwork Created")
@@ -57,7 +57,7 @@ function Sellpage({ props, updateParentState }) {
         } else {
             // No errors! Put any logic here for the form submission!
             const random = Math.floor(Math.random() * randomUrls.length);
-            uploadArtwork(form.name, form.price, randomUrls[random])
+            uploadArtwork(form.name, form.price, form.description, randomUrls[random])
             console.log(form)
             console.log("Submitted")
         }
@@ -78,7 +78,7 @@ function Sellpage({ props, updateParentState }) {
         // price errors
         if (!price || price < 0) newErrors.price = 'Must be more than 0 ETH'
         // description errors
-        // if (!description || description === '') newErrors.description = 'Description be blank!'
+        if (!description || description === '') newErrors.description = 'Description be blank!'
         return newErrors
     }
 

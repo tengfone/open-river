@@ -5,8 +5,6 @@ import { Component } from 'react';
 
 // Abis
 import OpenRiver from './abis/OpenRiver.json'
-import MetaCoin from './abis/MetaCoin.json'
-import ConvertLib from './abis/ConvertLib.json'
 
 // Components
 import Header from './components/Header'
