@@ -3,7 +3,7 @@ import ethIcon from '../assets/eth_icon.svg'
 import './LedgerList.css'
 
 const LedgerList = ({allTx}) => {
-    console.log(allTx)
+    // console.log(allTx)
     
     return (
         <div className="tx-container">

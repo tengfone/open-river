@@ -16,7 +16,7 @@ const Buypage = ({ props }) => {
         // need to parse to int or can accept float?
         const id_parsed = parseInt(id)
         // const price_parsed = parseInt(price)
-        console.log(id_parsed)
+        // console.log(id_parsed)
         // console.log(price_parsed)
         openRiver.methods.purchaseProduct(id_parsed).send({ from: account, value: window.web3.utils.toWei(price, 'Ether') })
             .once('receipt', (receipt) => {

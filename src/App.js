@@ -56,8 +56,8 @@ class App extends Component {
       openRiver.methods.artworkCount().call().then(value => {
         for (let i = 1; i <= value; i++) {
           openRiver.methods.artworks(i).call().then(products => {
-            console.log(accounts[0].toLowerCase())
-            if (products.owner == accounts[0].toLowerCase())  {
+            if (products.owner == accounts[0])  {
+              
               myArtWokrs.push(products)
             } 
 

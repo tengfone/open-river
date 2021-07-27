@@ -82,7 +82,7 @@ function Sellpage({ props , updateParentState }) {
                     />
                     <Form.Control.Feedback type='invalid'>{errors.name}</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group>
+                {/* <Form.Group>
                     <Form.Label>Type</Form.Label>
                     <Form.Control
                         disabled
@@ -97,7 +97,7 @@ function Sellpage({ props , updateParentState }) {
                         <option value='others'>Others</option>
                     </Form.Control>
                     <Form.Control.Feedback type='invalid'>{errors.type}</Form.Control.Feedback>
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group controlId="formFile">
                     <Form.Label>Upload File Image</Form.Label>
                     <Form.Control disabled onChange={e => setField('file', e.target.files)} isInvalid={!!errors.file} type="file" />
@@ -115,7 +115,6 @@ function Sellpage({ props , updateParentState }) {
                 <Form.Group>
                     <Form.Label>Description</Form.Label>
                     <Form.Control
-                        disabled
                         as='textarea'
                         onChange={e => setField('description', e.target.value)}
                         isInvalid={!!errors.description}
