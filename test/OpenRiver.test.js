@@ -20,6 +20,7 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
   	result = await this.OpenRiver.uploadArtwork('Testname', web3.utils.toWei('1', 'Ether'), 'TestHash',{from: seller})
   	productCount = await this.OpenRiver.artworkCount()
   })
+  	//testing upload Artwork
   	it('create artwork', async () => {
   
 	  assert.equal(productCount, 1)
@@ -34,6 +35,7 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 	  await this.OpenRiver.uploadArtwork('', 0, {from: seller}).should.be.rejected
 
 })
+  	// testing putchaseProduct
   	  	it('sell product', async () => {
   
   	  		//check seller balance
