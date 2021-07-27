@@ -1,10 +1,12 @@
 import { React, useState } from 'react'
 import '../App.css'
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap'
-import {randomUrls} from '../constants'
+import { Button } from 'react-bootstrap';
+import { randomUrls } from '../constants';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Sellpage({ props , updateParentState }) {
+function Sellpage({ props, updateParentState }) {
 
     const openRiver = props.openRiver
     const account = props.account
@@ -18,6 +20,17 @@ function Sellpage({ props , updateParentState }) {
             .once('receipt', (receipt) => {
                 console.log("Artwork Created")
                 updateParentState(receipt.events.ArtworkCreated.returnValues)
+
+                toast.success('🎉 Success', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => { window.location.reload(); }, 2000);
             });
     }
 
@@ -123,6 +136,7 @@ function Sellpage({ props , updateParentState }) {
                 </Form.Group>
                 <Button type='submit' onClick={handleSubmit}>Sell!</Button>
             </Form>
+            <ToastContainer />
             {/* <Button onClick={tempFunction}>Temp Button</Button> */}
         </div>
     )

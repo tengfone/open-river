@@ -12,21 +12,48 @@ const Buypage = ({ props }) => {
 
     // const { error, isPending, data: assets } = fetchData('http://localhost:8000/assets')
 
-    const purchaseProducts = (id, price) => {
-        // need to parse to int or can accept float?
-        const id_parsed = parseInt(id)
-        // const price_parsed = parseInt(price)
-        // console.log(id_parsed)
-        // console.log(price_parsed)
-        openRiver.methods.purchaseProduct(id_parsed).send({ from: account, value: window.web3.utils.toWei(price, 'Ether') })
-            .once('receipt', (receipt) => {
-                console.log("Purchase Success")
-                console.log('receipt ', receipt);
-            })
-            .on('error', (error) => {
-                console.log('receipt ', error);
-            });
+    function purchaseProducts(id, price) {
+        return new Promise(resolve => {
+            const id_parsed = parseInt(id)
+            openRiver.methods.purchaseProduct(id_parsed).send({ from: account, value: window.web3.utils.toWei(price, 'Ether') })
+                .once('receipt', (receipt) => {
+                    console.log("Purchase Success")
+                    console.log('receipt ', receipt);
+                    if (receipt.status) {
+                        resolve(200)
+                    }
+                })
+                .on('error', (error) => {
+                    if (error.code === 4001) {
+                        resolve(4001)
+                    } else {
+                        resolve(404)
+                    }
+                    console.log('receipt ', error);
+                });
+        })
     }
+
+    // const purchaseProducts = (id, price) => {
+    //     // Receipt codes:
+    //     // receipt.code: 4001 == User deny transcation
+    //     const id_parsed = parseInt(id)
+    //     openRiver.methods.purchaseProduct(id_parsed).send({ from: account, value: window.web3.utils.toWei(price, 'Ether') })
+    //         .once('receipt', (receipt) => {
+    //             console.log("Purchase Success")
+    //             console.log('receipt ', receipt);
+    //             if (receipt.code === 4001) {
+    //                 return 4001
+    //             }
+    //             if (receipt.status) {
+    //                 return 200
+    //             }
+    //         })
+    //         .on('error', (error) => {
+    //             console.log('receipt ', error);
+    //             return 404
+    //         });
+    // }
 
     return (
         <>
@@ -36,7 +63,7 @@ const Buypage = ({ props }) => {
                 {/* {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>}
                 {assets && <AssetList assets={assets} />} */}
-                <AssetList assets={props.totalArtwork} purchaseProducts={purchaseProducts}/>
+                <AssetList assets={props.totalArtwork} purchaseProducts={purchaseProducts} isClickable={true} />
             </div>
         </>
     )
