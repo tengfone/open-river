@@ -133,42 +133,30 @@ function MyVerticallyCenteredModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {props.asset.name}
-          </Modal.Title>
-        </Modal.Header>
+        {/* <Modal.Header>
+          <div className="modal-title">
+            <Modal.Title id="contained-modal-title-vcenter">
+              <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
+                <p>{props.asset.price}</p>
+            </Modal.Title>
+          </div>
+         
+        </Modal.Header> */}
         <Modal.Body>
-
-          <Container>
-            <Row>
-              <Col xs={12} md={8}>
-                .col-xs-12 .col-md-8
-              </Col>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-              </Col>
-            </Row>
-
-            <Row>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-              </Col>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-              </Col>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-              </Col>
-            </Row>
-          </Container>
-
-          <h4>Description</h4>
-          <p>{props.asset.description}</p>
-          <img style={{ height: 'auto', width: 'auto', maxWidth: '300px', maxHeight: '300px' }} src={props.asset.imgHash} />
-          <div className="">
-            <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
-            <p>{props.asset.price}</p>
+          <div className="modal-section">
+            <div className="modal-card">
+                <img style={{ height: 'auto', width: 'auto', maxWidth: '150px', maxHeight: '300px' }} src={props.asset.imgHash} />              
+            </div>
+            <div className="modal-right">
+              <div className="modal-price">
+                <img src={ethIcon} alt="Eth Icon" width="35" height="35" />
+                <p>{props.asset.price}</p>
+              </div>
+              <div className="asset-name">
+                {props.asset.name}
+              </div>
+              <p>{props.asset.description}</p> 
+            </div>
           </div>
         </Modal.Body>
 
