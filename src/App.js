@@ -30,7 +30,7 @@ class App extends Component {
       totalArtwork: [],
       loading: true,
       allTransactions:[],
-      myArtWokrs: []
+      myArtWorks: []
     }
   }
   async componentDidMount() {
@@ -47,7 +47,7 @@ class App extends Component {
     this.setState({ account: accounts[0], ethBalance: ethBalance })
     const networkId = await web3.eth.net.getId()
     let totalArtwork = [];
-    let myArtWokrs = []
+    let myArtWorks = []
     // Load OpenRiver Contract
     const openRiverData = OpenRiver.networks[networkId]
     if (openRiverData) {
@@ -58,7 +58,7 @@ class App extends Component {
           openRiver.methods.artworks(i).call().then(products => {
             if (products.owner == accounts[0])  {
               
-              myArtWokrs.push(products)
+              myArtWorks.push(products)
             } 
 
             if (!products.isPurchased) {
@@ -68,7 +68,7 @@ class App extends Component {
         }
         this.setState({
           totalArtwork: totalArtwork,
-          myArtWokrs: myArtWokrs
+          myArtWorks: myArtWorks
         })
       })
     } else {
