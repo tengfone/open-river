@@ -59,7 +59,7 @@ class App extends Component {
               myArtWorks.push(products)
             } 
 
-            if (!products.isPurchased) {
+            if (!products.isPurchased && products.owner !== accounts[0]) {
               totalArtwork.push(products)
             } 
           })
