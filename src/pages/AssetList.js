@@ -149,13 +149,18 @@ function MyVerticallyCenteredModal(props) {
             </div>
             <div className="modal-right">
               <div className="modal-price">
-                <img src={ethIcon} alt="Eth Icon" width="35" height="35" />
-                <p>{props.asset.price}</p>
+                <div className="asset-name">
+                  {props.asset.name}
+                </div>
+                <div className="price-section">
+                  <img src={ethIcon} alt="Eth Icon" width="30" height="30" />
+                  <p id="asset-price">{props.asset.price}</p>
+                </div>
               </div>
-              <div className="asset-name">
-                {props.asset.name}
+              <div className="desc-section">
+
+              <p id="asset-desc">{props.asset.description}</p> 
               </div>
-              <p>{props.asset.description}</p> 
             </div>
           </div>
         </Modal.Body>
