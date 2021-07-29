@@ -1,7 +1,8 @@
 import { React, useState } from 'react'
 import '../App.css'
+import "./AssetList.css";
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { randomUrls } from '../constants';
 import Web3 from 'web3'
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,14 +19,13 @@ function Sellpage({ props, updateParentState }) {
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
     const [convertedEth, setConvertedEth] = useState(0)
+    const [showSpinner, setShowSpinner] = useState(false)
 
     const uploadArtwork = (name, price, description, imageHash) => {
         openRiver.methods.uploadArtwork(name, price, description, imageHash)
             .send({ from: account })
             .once('receipt', (receipt) => {
-                console.log("Artwork Created")
                 updateParentState(receipt.events.ArtworkCreated.returnValues)
-
                 toast.success('🎉 Success', {
                     position: "top-center",
                     autoClose: 5000,
@@ -35,8 +35,13 @@ function Sellpage({ props, updateParentState }) {
                     draggable: true,
                     progress: undefined,
                 });
-                setTimeout(() => { window.location.reload(); }, 2000);
-            });
+                setTimeout(() => {
+                    setShowSpinner(false)
+                    window.location.reload()
+                }, 2000);
+            }).on('error', (error) => {
+                console.log(error);
+            });;
     }
 
     const captureFile = (event) => {
@@ -67,9 +72,8 @@ function Sellpage({ props, updateParentState }) {
 
     const sgdToEtherum = e => {
         let sgdFloat = parseFloat(e)
-        if (!isNaN(sgdFloat)){
+        if (!isNaN(sgdFloat)) {
             let convertE = (sgdFloat * 0.0003).toFixed(18)
-            console.log(window.web3.utils.toWei(convertE, 'ether'))
             setConvertedEth(convertE)
         }
         else {
@@ -93,11 +97,13 @@ function Sellpage({ props, updateParentState }) {
         } else {
             // No errors! Put any logic here for the form submission!
             // const random = Math.floor(Math.random() * randomUrls.length);
+
+            setShowSpinner(true)
+
             toIPFS().then((res) => {
                 // Example hash: QmWxpa7VASM1own9Ey3CSxNKu7Ez55Rp99Vk8SC2B3z7bt
                 // Example url: https://ipfs.infura.io/ipfs/{hash}
-                
-                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth, 'ether') , form.description, res.path)
+                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth, 'ether'), form.description, res.path)
             }
             )
         }
@@ -119,7 +125,7 @@ function Sellpage({ props, updateParentState }) {
         // }
         // price errors
         if (!price || price < 0) newErrors.price = 'Must be more than 0 SGD'
-        else if (!price.match(validPrice)){
+        else if (!price.match(validPrice)) {
             newErrors.price = 'Must be in the form x.x'
         }
         // description errors
@@ -182,7 +188,14 @@ function Sellpage({ props, updateParentState }) {
                 <Button type='submit' onClick={handleSubmit}>Sell!</Button>
             </Form>
             <ToastContainer />
-            {/* <Button onClick={tempFunction}>Temp Button</Button> */}
+            {
+                showSpinner && (
+                    <div className={"loader-wrapper"}>
+                        <Spinner animation="border" role="status">
+                        </Spinner>
+                    </div>
+                )
+            }
         </div>
     )
 }
