@@ -102,15 +102,19 @@
   /* width: 100%;
   text-align: end; */
   display :flex;
-  justify-content: space-between  ;
+  justify-content: flex-end  ;
 }
 
-/* .modal-price p{
-  font-size: 40px;
-} */
+.modal-price p{
+  font-size: 30px;
+}
 
 .modal-price img{
   margin-bottom: 17px;
+}
+
+.modal-price img {
+  padding-top: 8px;
 }
 
 .asset-name {
@@ -123,6 +127,7 @@
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   padding: 7px;
+  object-fit: cover;
 }
 
 .modal-card img {

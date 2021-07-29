@@ -147,7 +147,7 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
           <div className="modal-section">
             <div className="modal-card">
-                <img style={{ height: 'auto', width: 'auto', maxWidth: '150px', maxHeight: '300px' }} src={props.asset.imgHash} />              
+                <img style={{ height: '200px', width: '150px' }} src={props.asset.imgHash} />              
             </div>
             <div className="modal-right">
               <div className="modal-price">

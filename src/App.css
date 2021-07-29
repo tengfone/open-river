@@ -52,3 +52,5 @@
   height: 100%;
 }
 
+html,body { height:100%; background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);}
+

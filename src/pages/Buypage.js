@@ -4,6 +4,7 @@ import AssetList from './AssetList'
 import '../App.css'
 import { Button } from 'react-bootstrap'
 import Web3 from 'web3'
+import "./Buypage.css"
 
 const Buypage = ({ props }) => {
 
@@ -57,8 +58,7 @@ const Buypage = ({ props }) => {
 
     return (
         <>
-            <h1>Marketplace</h1>
-            <p>Choose from a myraid of original assets made curated by creative individuals</p>
+            <p id="buypageTag">Choose from a myraid of original assets made curated by creative individuals</p>
             <div className="buy-section">
                 {/* {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>}
