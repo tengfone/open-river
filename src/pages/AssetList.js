@@ -4,12 +4,13 @@ import { Modal, Button, Spinner, Container, Row, Col } from 'react-bootstrap'
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Web3 from 'web3'
 
 const AssetList = ({ assets, purchaseProducts, isClickable }) => {
 
   const [modalShow, setModalShow] = useState(false)
   const [selectedIndex, setIndex] = useState()
-
+  const web3 = window.web3
   console.log(assets)
   // purchaseProducts(asset.id, asset.price)
 
@@ -23,7 +24,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
             setIndex(index)
           }
           }>
-            <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
+            <div className="card-image"><img src={asset.imgHash} /></div>
             <div className="card-placeholder">
               <p>Title</p>
               <p>Price</p>
@@ -32,7 +33,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
               <p>{asset.name}</p>
               <div className="right-information-block">
                 <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
-                <p>{asset.price}</p>
+                <p>{web3.utils.fromWei(asset.price, 'ether' )}</p>
               </div>
             </div>
           </div>
@@ -56,7 +57,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
     <div className="assets-container">
       {assets.map(asset => (
         <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
-          <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
+          <div className="card-image"><img src={asset.imgHash} /></div>
           <div className="card-placeholder">
             <p>Title</p>
             <p>Price</p>
@@ -65,7 +66,8 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
             <p>{asset.name}</p>
             <div className="right-information-block">
               <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
-              <p>{asset.price}</p>
+              {/* <p>{Number((web3.utils.fromWei(asset.price, 'ether' ))).toFixed(2)}</p> */}
+              <p>{(web3.utils.fromWei(asset.price, 'ether' ))}</p>
             </div>
           </div>
         </div>
@@ -75,7 +77,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
 }
 
 function MyVerticallyCenteredModal(props) {
-
+  const web3 = window.web3
   const [showSpinner, setShowSpinner] = useState(false)
 
   async function purchaseSelectedProducted() {
@@ -145,22 +147,17 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
           <div className="modal-section">
             <div className="modal-card">
-                <img style={{ height: 'auto', width: 'auto', maxWidth: '150px', maxHeight: '300px' }} src={`https://ipfs.infura.io/ipfs/${props.asset.imgHash}`} />              
+                <img style={{ height: 'auto', width: 'auto', maxWidth: '150px', maxHeight: '300px' }} src={props.asset.imgHash} />              
             </div>
             <div className="modal-right">
               <div className="modal-price">
-                <div className="asset-name">
-                  {props.asset.name}
-                </div>
-                <div className="price-section">
-                  <img src={ethIcon} alt="Eth Icon" width="30" height="30" />
-                  <p id="asset-price">{props.asset.price}</p>
-                </div>
+                <img src={ethIcon} alt="Eth Icon" width="35" height="35" />
+                <p>{web3.utils.fromWei(props.asset.price, 'ether' )}</p>
               </div>
-              <div className="desc-section">
-
-              <p id="asset-desc">{props.asset.description}</p> 
+              <div className="asset-name">
+                {props.asset.name}
               </div>
+              <p>{props.asset.description}</p> 
             </div>
           </div>
         </Modal.Body>

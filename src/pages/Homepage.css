@@ -1,10 +1,16 @@
 .hero-section {
     padding: 15vh 60px 15vh 60px;
+    /* background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE); */
 }
 
 .hero-content {
     width: 500px;
-    padding: 80px 60px 0px 0px;
+    padding: 120px  60px 0px 0px;
+    min-width: 700px;
+}
+
+.hero-content p {
+    display: block;
 }
 
 .hero-flex-container {
@@ -27,8 +33,8 @@
 }
 
 .heroImage {
-    -webkit-filter: drop-shadow(5px 5px 5px #C4C4C4);
-    filter: drop-shadow(5px 5px 5px #C4C4C4);
+    -webkit-filter: drop-shadow(5px 5px 10px #b3b3b3);
+    filter: drop-shadow(5px 5px 10px #b3b3b3);
 }
 
 #heroImage {
@@ -40,3 +46,19 @@
     transition-timing-function: ease-in;
     transition: 0.2s;
 }
+
+
+.hero-form Button {
+    padding: 10px 30px;
+}
+
+#ledgerBtn {
+    border: 1px solid #0275d8;
+    background-color: white;
+    color: #0275d8
+}
+
+#ledgerBtn:hover {
+    background-color: #0275d8;
+    color: white;
+  }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useHistory } from "react-router-dom";
 import './Homepage.css'
-import heroImage from '../assets/heroImage.png'
+import heroImage from '../assets/hero_img.gif'
 
 
 
@@ -27,11 +27,11 @@ function Homepage() {
                     <p style={{ textAlign: "left", fontSize: "18px", marginBottom:"40px" }} >on the world's 2nd and smallest digital assets marketplace!</p>
                     <div className="hero-form">
                         <Button onClick={toMarket} variant="primary">Market Place</Button>
-                        <Button onClick={toLedger} variant="outline-secondary" className="ledgerButton">Ledger</Button>
+                        <Button id="ledgerBtn" onClick={toLedger} variant="outline-secondary" className="ledgerButton">Ledger</Button>
                     </div>
                 </div>
                 <div className="heroImage">
-                    <img id="heroImage" src={heroImage} alt="" width="550" height="515"/>
+                    <img id="heroImage" src={heroImage} alt="" width="450" height="525.77"/>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ const Buypage = ({ props }) => {
     function purchaseProducts(id, price) {
         return new Promise(resolve => {
             const id_parsed = parseInt(id)
-            openRiver.methods.purchaseProduct(id_parsed).send({ from: account, value: window.web3.utils.toWei(price, 'Ether') })
+            openRiver.methods.purchaseProduct(id_parsed).send({ from: account, value: price })
                 .once('receipt', (receipt) => {
                     console.log("Purchase Success")
                     console.log('receipt ', receipt);

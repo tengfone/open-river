@@ -69,6 +69,7 @@ function Sellpage({ props, updateParentState }) {
         let sgdFloat = parseFloat(e)
         if (!isNaN(sgdFloat)){
             let convertE = (sgdFloat * 0.0003).toFixed(18)
+            console.log(window.web3.utils.toWei(convertE, 'ether'))
             setConvertedEth(convertE)
         }
         else {
@@ -96,7 +97,7 @@ function Sellpage({ props, updateParentState }) {
                 // Example hash: QmWxpa7VASM1own9Ey3CSxNKu7Ez55Rp99Vk8SC2B3z7bt
                 // Example url: https://ipfs.infura.io/ipfs/{hash}
                 
-                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth.toString()) , form.description, res.path)
+                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth, 'ether') , form.description, res.path)
             }
             )
         }

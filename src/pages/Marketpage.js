@@ -17,8 +17,7 @@ function Marketpage() {
 
     return (
         <div>
-            <h1>Buy and Sell</h1>
-            <p>At Open river, buying and selling art is made simple and secure</p>
+            <p id="mptagline">At Open river, buying and selling art is made simple and secure</p>
             <div className="market-flex-container">
                 <div className="buySellContainer">
                     <img id="buyImg" className="marketplaceImg" src={buyImage} alt="" width="477" height="693" />

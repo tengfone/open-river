@@ -6,7 +6,7 @@ import { FaRegCopy } from 'react-icons/fa';
 import ethIcon from '../assets/eth_icon.svg'
 import { useRef, useState } from 'react';
 import AssetList from './AssetList';
-import pbanner from '../assets/pbanner.jpg'
+import pbanner from '../assets/pbanner.png'
 
 function Profilepage({ props }) {
     const account = props.account

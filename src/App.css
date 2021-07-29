@@ -42,10 +42,13 @@
 }
 
 .ledger {
-  background-color: wheat;
+  background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
 }
 
 .ledger-section {
   margin: 0px 50px;
   padding-top: 30px;
+  padding-bottom: 30px;
+  height: 100%;
 }
+

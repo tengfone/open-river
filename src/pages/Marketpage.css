@@ -1,11 +1,13 @@
 .market-flex-container {
     display: flex;
     justify-content: space-between;
-    padding: 0px 430px;
+    padding: 0px 25%;
 }
 
-p {
-    font-size: 16px;
+#mptagline {
+    margin-top: 2rem;
+    font-size: 24px;
+    margin-bottom: 2rem;
 }
 
 .buySellContainer {
@@ -42,6 +44,11 @@ p {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+}
+
+.buySellContainer {
+    min-width: 300px;
+    margin-right: 25px;
 }
   
 .buySellContainer:hover .marketplaceImg  {
