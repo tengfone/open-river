@@ -23,7 +23,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
             setIndex(index)
           }
           }>
-            <div className="card-image"><img src={asset.imgHash} /></div>
+            <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
             <div className="card-placeholder">
               <p>Title</p>
               <p>Price</p>
@@ -56,7 +56,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
     <div className="assets-container">
       {assets.map(asset => (
         <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
-          <div className="card-image"><img src={asset.imgHash} /></div>
+          <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
           <div className="card-placeholder">
             <p>Title</p>
             <p>Price</p>
@@ -145,7 +145,7 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
           <div className="modal-section">
             <div className="modal-card">
-                <img style={{ height: 'auto', width: 'auto', maxWidth: '150px', maxHeight: '300px' }} src={props.asset.imgHash} />              
+                <img style={{ height: 'auto', width: 'auto', maxWidth: '150px', maxHeight: '300px' }} src={`https://ipfs.infura.io/ipfs/${props.asset.imgHash}`} />              
             </div>
             <div className="modal-right">
               <div className="modal-price">

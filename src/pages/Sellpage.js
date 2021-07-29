@@ -3,8 +3,12 @@ import '../App.css'
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { randomUrls } from '../constants';
+import Web3 from 'web3'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const ipfsClient = require('ipfs-http-client')
+const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 function Sellpage({ props, updateParentState }) {
 
@@ -13,6 +17,7 @@ function Sellpage({ props, updateParentState }) {
 
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+    const [convertedEth, setConvertedEth] = useState(0)
 
     const uploadArtwork = (name, price, description, imageHash) => {
         openRiver.methods.uploadArtwork(name, price, description, imageHash)
@@ -34,6 +39,19 @@ function Sellpage({ props, updateParentState }) {
             });
     }
 
+    const captureFile = (event) => {
+        // Process file for IPFS
+        const file = event.target.files[0]
+        const reader = new window.FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onloadend = () => {
+            setForm({
+                ...form,
+                buffer: Buffer(reader.result)
+            })
+        }
+    }
+
     const setField = (field, value) => {
         setForm({
             ...form,
@@ -46,6 +64,23 @@ function Sellpage({ props, updateParentState }) {
         })
     }
 
+
+    const sgdToEtherum = e => {
+        let sgdFloat = parseFloat(e)
+        if (!isNaN(sgdFloat)){
+            let convertE = (sgdFloat * 0.0003).toFixed(18)
+            setConvertedEth(convertE)
+        }
+        else {
+            setConvertedEth(0)
+        }
+    }
+
+    const toIPFS = async () => {
+        const result = await ipfs.add(form.buffer)
+        return result
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
         // get our new errors
@@ -56,16 +91,22 @@ function Sellpage({ props, updateParentState }) {
             setErrors(newErrors)
         } else {
             // No errors! Put any logic here for the form submission!
-            const random = Math.floor(Math.random() * randomUrls.length);
-            uploadArtwork(form.name, form.price, form.description, randomUrls[random])
-            console.log(form)
-            console.log("Submitted")
+            // const random = Math.floor(Math.random() * randomUrls.length);
+            toIPFS().then((res) => {
+                // Example hash: QmWxpa7VASM1own9Ey3CSxNKu7Ez55Rp99Vk8SC2B3z7bt
+                // Example url: https://ipfs.infura.io/ipfs/{hash}
+                
+                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth.toString()) , form.description, res.path)
+            }
+            )
         }
     }
 
     const findFormErrors = () => {
         const { name, type, file, price, description } = form
         const newErrors = {}
+        let validPrice = /^\d*\.?\d*$/
+
         // name errors
         if (!name || name === '') newErrors.name = 'Cannot be blank!'
         else if (name.length > 30) newErrors.name = 'name is too long!'
@@ -76,7 +117,10 @@ function Sellpage({ props, updateParentState }) {
         //     newErrors.file = 'Upload an image!'
         // }
         // price errors
-        if (!price || price < 0) newErrors.price = 'Must be more than 0 ETH'
+        if (!price || price < 0) newErrors.price = 'Must be more than 0 SGD'
+        else if (!price.match(validPrice)){
+            newErrors.price = 'Must be in the form x.x'
+        }
         // description errors
         if (!description || description === '') newErrors.description = 'Description be blank!'
         return newErrors
@@ -95,36 +139,36 @@ function Sellpage({ props, updateParentState }) {
                     />
                     <Form.Control.Feedback type='invalid'>{errors.name}</Form.Control.Feedback>
                 </Form.Group>
-                {/* <Form.Group>
-                    <Form.Label>Type</Form.Label>
-                    <Form.Control
-                        disabled
-                        as='select'
-                        onChange={e => setField('type', e.target.value)}
-                        isInvalid={!!errors.type}
-                    >
-                        <option value=''>Select Type of Digital Asset:</option>
-                        <option value='artwork'>Artwork</option>
-                        <option value='game'>Game Items</option>
-                        <option value='software'>Software</option>
-                        <option value='others'>Others</option>
-                    </Form.Control>
-                    <Form.Control.Feedback type='invalid'>{errors.type}</Form.Control.Feedback>
-                </Form.Group> */}
                 <Form.Group controlId="formFile">
                     <Form.Label>Upload File Image</Form.Label>
-                    <Form.Control disabled onChange={e => setField('file', e.target.files)} isInvalid={!!errors.file} type="file" />
+                    <Form.Control onChange={e => {
+                        setField('file', e.target.files)
+                        captureFile(e)
+                    }} isInvalid={!!errors.file} type="file" />
                     <Form.Control.Feedback type='invalid'>{errors.file}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>Price (ETH)</Form.Label>
+                    <Form.Label>Price (SGD)</Form.Label>
                     <Form.Control
-                        type='number'
-                        onChange={e => setField('price', e.target.value)}
+                        type='text'
+                        onChange={e => {
+                            setField('price', e.target.value)
+                            sgdToEtherum(e.target.value)
+                        }}
                         isInvalid={!!errors.price}
                     />
                     <Form.Control.Feedback type='invalid'>{errors.price}</Form.Control.Feedback>
                 </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Converted to Etherum (Ξ)*</Form.Label>
+                    <Form.Control
+                        type='text'
+                        disabled
+                        placeholder={convertedEth}
+                    />
+                </Form.Group>
+                <p>* Conversion rate is hardcoded</p>
                 <Form.Group>
                     <Form.Label>Description</Form.Label>
                     <Form.Control
