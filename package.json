@@ -10,6 +10,7 @@
     "bootstrap": "^4.6.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
+    "dotenv": "^8.2.0",
     "ipfs-http-client": "^48.2.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
@@ -18,6 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.4",
+    "truffle-hdwallet-provider": "^1.0.17",
     "web-vitals": "^1.0.1",
     "web3": "^1.4.0"
   },
