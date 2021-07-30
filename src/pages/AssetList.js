@@ -22,6 +22,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
           <div className="card" key={asset.id} onClick={() => {
             setModalShow(true)
             setIndex(index)
+            
           }
           }>
             <div className="card-image"><img src={asset.imgHash} /></div>
@@ -82,6 +83,7 @@ function MyVerticallyCenteredModal(props) {
 
   async function purchaseSelectedProducted() {
     setShowSpinner(true)
+    console.log(props.asset)
     props.purchaseProducts(props.asset.id, props.asset.price).then((status) => {
       if (status === 200) {
         toast.success('🎉 Success', {
