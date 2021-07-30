@@ -1,5 +1,9 @@
 .hero-section {
     padding: 15vh 60px 15vh 60px;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
+  /* background-size: cover;
+  background-repeat: no-repeat; */
     /* background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE); */
 }
 

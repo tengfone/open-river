@@ -23,11 +23,13 @@ function Profilepage({ props }) {
                     </div>
                 </div>
                 <div className="profile">
-                    <img src={profileImage} alt="Avatar" className="avatar" />
-                    <div className="profile-details">
-                        <div className="copy-address">
-                            <p>{account.substring(0, 6)}...{account.slice(-4)}</p>
-                            <button className="copy-btn" onClick={() => navigator.clipboard.writeText(account)}><FaRegCopy /></button>
+                    <div className="profile-img">
+                        <img src={profileImage} alt="Avatar" className="avatar" />
+                        <div className="profile-details">
+                            <div className="copy-address">
+                                <p>{account.substring(0, 6)}...{account.slice(-4)}</p>
+                                <button className="copy-btn" onClick={() => navigator.clipboard.writeText(account)}><FaRegCopy /></button>
+                            </div>
                         </div>
                     </div>
                     <div className="myartwork-section">

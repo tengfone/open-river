@@ -7,3 +7,9 @@
   margin-top: 2rem;
   font-size: 24px;
 }
+
+.buy-bg{
+  padding-bottom: 10px;
+  height: 100%;
+  background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
+}

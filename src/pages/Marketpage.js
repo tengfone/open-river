@@ -16,7 +16,7 @@ function Marketpage() {
     }
 
     return (
-        <div>
+        <div className="marketplace-section">
             <p id="mptagline">At Open river, buying and selling art is made simple and secure</p>
             <div className="market-flex-container">
                 <div className="buySellContainer">

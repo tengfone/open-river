@@ -1,6 +1,5 @@
 .profile-section {
     position: relative;
-    
 }
 
 .banner-bg {
@@ -13,6 +12,11 @@
     display: flex;
 }
 
+.profile-img {
+    display: inline-block;
+    margin-top: -100px;
+}
+
 .profile {
     position: absolute;
     margin-left: auto;
@@ -20,7 +24,9 @@
     left: 0;
     right: 0;
     text-align: center;
-    top: 30vh;
+    top: 40vh;
+    background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
+
 }
 
 .avatar {

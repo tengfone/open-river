@@ -57,15 +57,15 @@ const Buypage = ({ props }) => {
     // }
 
     return (
-        <>
-            <p id="buypageTag">Choose from a myraid of original assets made curated by creative individuals</p>
+        <div className="buy-bg">
             <div className="buy-section">
+                <p id="buypageTag">Choose from a myraid of original assets made curated by creative individuals</p>
                 {/* {error && <div>{error}</div>}
                 {isPending && <div>Loading...</div>}
                 {assets && <AssetList assets={assets} />} */}
                 <AssetList assets={props.totalArtwork} purchaseProducts={purchaseProducts} isClickable={true} />
             </div>
-        </>
+        </div>
     )
 }
 

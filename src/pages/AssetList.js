@@ -154,7 +154,7 @@ function MyVerticallyCenteredModal(props) {
             </div>
             <div className="modal-right">
               <div className="modal-price">
-                <img src={ethIcon} alt="Eth Icon" width="35" height="35" />
+                <img src={ethIcon} alt="Eth Icon"  height="35" />
                 <p>{Number((web3.utils.fromWei(props.asset.price, 'ether'))).toFixed(3)}</p>
               </div>
               <div className="asset-name">

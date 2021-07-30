@@ -107,10 +107,12 @@
 
 .modal-price p{
   font-size: 30px;
+  margin-left: 5px;
 }
 
 .modal-price img{
   margin-bottom: 17px;
+  object-fit: cover;
 }
 
 .modal-price img {
