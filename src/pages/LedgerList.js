@@ -3,11 +3,12 @@ import ethIcon from '../assets/eth_icon.svg'
 import './LedgerList.css'
 
 const LedgerList = ({allTx}) => {
-    // console.log(allTx)
+    const web3 = window.web3
+    console.log(allTx)
     
     return (
         <div className="tx-container">
-        {allTx.map(tx  => (
+        {allTx.reverse().map(tx  => (
               <div className="ledger-card" key={tx.hash}>
                 <div className="ledger-left">
                     <div className="tx-hash-block">
@@ -43,7 +44,7 @@ const LedgerList = ({allTx}) => {
                                 GAS PRICE
                             </div>
                             <div className="gas-val">
-                                {window.web3.utils.fromWei(tx.gasPrice, 'Ether')}
+                                {Number((web3.utils.fromWei(tx.gasPrice, 'ether'))).toFixed(3)}
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@ const LedgerList = ({allTx}) => {
                         <div className="value-val-block">
                             <img src={ethIcon} alt="Eth Icon" width="14" height="14"/>
                             <div className="tx-val">
-                                {window.web3.utils.fromWei(tx.value, 'Ether')}
+                                {Number((web3.utils.fromWei(tx.value, 'ether'))).toFixed(3)}
                             </div>
                         </div>
                     </div>
