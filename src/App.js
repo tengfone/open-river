@@ -81,7 +81,7 @@ class App extends Component {
     require('dotenv').config()
     const web3 = window.web3
     const apiToken = process.env.REACT_APP_ETHERSCAN_TOKEN
-    fetch(`http://api-rinkeby.etherscan.io/api?module=account&action=txlist&address=${this.state.account}&startblock=0&endblock=99999999&sort=asc&apikey=${apiToken}`)
+    fetch(`https://api-rinkeby.etherscan.io/api?module=account&action=txlist&address=${this.state.account}&startblock=0&endblock=99999999&sort=asc&apikey=${apiToken}`)
       .then((response) => response.json())
       .then((data) =>
         {
