@@ -22,10 +22,10 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
           <div className="card" key={asset.id} onClick={() => {
             setModalShow(true)
             setIndex(index)
-            
+
           }
           }>
-            <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`}/></div>
+            <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
             <div className="card-placeholder">
               <p>Title</p>
               <p>Price</p>
@@ -34,7 +34,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
               <p>{asset.name}</p>
               <div className="right-information-block">
                 <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
-                <p>{Number((web3.utils.fromWei(asset.price, 'ether' ))).toFixed(3)}</p>
+                <p>{Number((web3.utils.fromWei(asset.price, 'ether'))).toFixed(3)}</p>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
   }
 
   // Profile Page
-  return (
+  else return (
     <div className="assets-container">
       {assets.map(asset => (
         <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
@@ -67,8 +67,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
             <p>{asset.name}</p>
             <div className="right-information-block">
               <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
-              <p>{asset.price}</p>
-              {/* <p>{Number((web3.utils.fromWei(asset.price, 'ether' ))).toFixed(3)}</p> */}
+              <p>{Number((web3.utils.fromWei(asset.price, 'ether' ))).toFixed(3)}</p>
             </div>
           </div>
         </div>
@@ -149,17 +148,17 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
           <div className="modal-section">
             <div className="modal-card">
-                <img style={{ height: '200px', width: '150px' }} src={`https://ipfs.infura.io/ipfs/${props.asset.imgHash}`}/>              
+              <img style={{ height: '200px', width: '150px' }} src={`https://ipfs.infura.io/ipfs/${props.asset.imgHash}`} />
             </div>
             <div className="modal-right">
               <div className="modal-price">
                 <img src={ethIcon} alt="Eth Icon" width="35" height="35" />
-                <p>{Number((web3.utils.fromWei(props.asset.price, 'ether' ))).toFixed(3)}</p>
+                <p>{Number((web3.utils.fromWei(props.asset.price, 'ether'))).toFixed(3)}</p>
               </div>
               <div className="asset-name">
                 {props.asset.name}
               </div>
-              <p>{props.asset.description}</p> 
+              <p>{props.asset.description}</p>
             </div>
           </div>
         </Modal.Body>
