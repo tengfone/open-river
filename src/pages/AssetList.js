@@ -25,7 +25,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
             
           }
           }>
-            <div className="card-image"><img src={asset.imgHash} /></div>
+            <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`}/></div>
             <div className="card-placeholder">
               <p>Title</p>
               <p>Price</p>
@@ -58,7 +58,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
     <div className="assets-container">
       {assets.map(asset => (
         <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
-          <div className="card-image"><img src={asset.imgHash} /></div>
+          <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
           <div className="card-placeholder">
             <p>Title</p>
             <p>Price</p>
