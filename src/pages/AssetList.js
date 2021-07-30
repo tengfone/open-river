@@ -54,26 +54,28 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
   }
 
   // Profile Page
-  else return (
-    <div className="assets-container">
-      {assets.map(asset => (
-        <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
-          <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
-          <div className="card-placeholder">
-            <p>Title</p>
-            <p>Price</p>
-          </div>
-          <div className="asset-information">
-            <p>{asset.name}</p>
-            <div className="right-information-block">
-              <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
-              <p>{Number((web3.utils.fromWei(asset.price, 'ether' ))).toFixed(3)}</p>
+  else {
+    return (
+      <div className="assets-container">
+        {assets.map(asset => (
+          <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
+            <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
+            <div className="card-placeholder">
+              <p>Title</p>
+              <p>Price</p>
+            </div>
+            <div className="asset-information">
+              <p>{asset.name}</p>
+              <div className="right-information-block">
+                <img src={ethIcon} alt="Eth Icon" width="14" height="14" />
+                <p>{Number((web3.utils.fromWei(asset.price, 'ether'))).toFixed(3)}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  }
 }
 
 function MyVerticallyCenteredModal(props) {
