@@ -33,7 +33,7 @@ function Profilepage({ props }) {
                     <div className="myartwork-section">
                     </div>
                     <div className="asset-container">
-                        <AssetList assets={props.myArtWorks} purchaseProducts={() => { }} isClickable = {false} />
+                        <AssetList assets={props.myArtWorks} isClickable = {false} />
                     </div>
                 </div>
             </div>

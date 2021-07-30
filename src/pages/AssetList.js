@@ -1,7 +1,7 @@
 import "./AssetList.css";
 import ethIcon from '../assets/eth_icon.svg'
 import { Modal, Button, Spinner, Container, Row, Col } from 'react-bootstrap'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Web3 from 'web3'
@@ -11,8 +11,6 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
   const [modalShow, setModalShow] = useState(false)
   const [selectedIndex, setIndex] = useState()
   const web3 = window.web3
-  console.log(assets)
-  // purchaseProducts(asset.id, asset.price)
 
   // Buying Page
   if (isClickable) {
@@ -58,7 +56,7 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
     return (
       <div className="assets-container">
         {assets.map(asset => (
-          <div className="card" key={asset.id} onClick={() => purchaseProducts(asset.id, asset.price)}>
+          <div className="card" key={asset.id}>
             <div className="card-image"><img src={`https://ipfs.infura.io/ipfs/${asset.imgHash}`} /></div>
             <div className="card-placeholder">
               <p>Title</p>
@@ -77,6 +75,8 @@ const AssetList = ({ assets, purchaseProducts, isClickable }) => {
     );
   }
 }
+
+// ################### Modal Function ###################
 
 function MyVerticallyCenteredModal(props) {
   const web3 = window.web3

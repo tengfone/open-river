@@ -27,7 +27,7 @@ class App extends Component {
       openRiver: {},
       totalArtwork: [],
       loading: true,
-      allTransactions:[],
+      allTransactions: [],
       myArtWorks: []
     }
   }
@@ -54,14 +54,14 @@ class App extends Component {
       openRiver.methods.artworkCount().call().then(value => {
         for (let i = 1; i <= value; i++) {
           openRiver.methods.artworks(i).call().then(products => {
-            if (products.owner == accounts[0])  {
-              
+            if (products.owner == accounts[0]) {
+
               myArtWorks.push(products)
-            } 
+            }
 
             if (!products.isPurchased && products.owner !== accounts[0]) {
               totalArtwork.push(products)
-            } 
+            }
           })
         }
         this.setState({
@@ -78,21 +78,36 @@ class App extends Component {
   }
 
   async pullAllTransactions() {
+    require('dotenv').config()
     const web3 = window.web3
-    const latest = await web3.eth.getBlockNumber()
-    let allTransactions = []
-    for (var i=0; i < latest; i++) {
-      const block = await web3.eth.getBlock(latest - i)
-      for (let txHash of block.transactions) {
-        let tx = await web3.eth.getTransaction(txHash)
-        let txR = await web3.eth.getTransactionReceipt(txHash);
-        let merged = {...tx, ...txR}
-        allTransactions.push(merged)
-      }
-    }
-    this.setState({
-      allTransactions: allTransactions
-    })
+    const apiToken = process.env.REACT_APP_ETHERSCAN_TOKEN
+    fetch(`http://api-rinkeby.etherscan.io/api?module=account&action=txlist&address=${this.state.account}&startblock=0&endblock=99999999&sort=asc&apikey=${apiToken}`)
+      .then((response) => response.json())
+      .then((data) =>
+        {
+          if(data.message === "OK"){
+            this.setState({
+              allTransactions: data.result
+            })
+          }
+        }
+      );
+
+    //// These codes pull ALL transcation from the blockchain. Not recommended
+    // const latest = await web3.eth.getBlockNumber()
+    // let allTransactions = []
+    // for (var i = 0; i < latest; i++) {
+    //   const block = await web3.eth.getBlock(latest - i)
+    //   for (let txHash of block.transactions) {
+    //     let tx = await web3.eth.getTransaction(txHash)
+    //     let txR = await web3.eth.getTransactionReceipt(txHash);
+    //     let merged = { ...tx, ...txR }
+    //     allTransactions.push(merged)
+    //   }
+    // }
+    // this.setState({
+    //   allTransactions: allTransactions
+    // })
   }
 
   async loadWeb3() {

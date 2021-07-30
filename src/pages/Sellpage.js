@@ -99,7 +99,6 @@ function Sellpage({ props, updateParentState }) {
             // const random = Math.floor(Math.random() * randomUrls.length);
 
             setShowSpinner(true)
-
             toIPFS().then((res) => {
                 // Example hash: QmWxpa7VASM1own9Ey3CSxNKu7Ez55Rp99Vk8SC2B3z7bt
                 // Example url: https://ipfs.infura.io/ipfs/{hash}

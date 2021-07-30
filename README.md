@@ -58,6 +58,10 @@ git clone https://github.com/tengfone/open-river
 cd open-river
 npm install
 ```
+```Please ensure that you have a ```.env``` file located at the root directory that consist of the following params:
+```
+REACT_APP_ETHERSCAN_TOKEN=GETFROMETHERSCAN
+```
 Then you can ```npm run start``` to start the frontend server.
 
 ### Smart Contracts
