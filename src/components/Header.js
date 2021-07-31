@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import './Header.css'
 import logo from '../assets/logo.png'
 
@@ -14,7 +14,6 @@ class Header extends Component {
                             <h4 className='brandName'>OpenRiver</h4>
                         </Navbar.Brand>
                     </a>
-
                     <Navbar.Toggle />
                     <Navbar.Collapse>
                         <Nav className="ml-auto">

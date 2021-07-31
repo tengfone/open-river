@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+.form-section {
+    background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
+    height: 93vh;
+    padding: 6vh 5vh 15vh 15vh;
+
+}
+
+.form-submit {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px 250px;
+    /* max-width: 1180px; */
+}
+
+Form {
+    padding-top: 150px;
+    width: 600px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 515px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+.card-sell {
+    min-width: 100px;
+    background-color: white;
+    margin: 2rem 2rem 0 0;
+    padding: 0.7rem;
+    width: 400px;
+    height: 538px;
+    box-shadow: 0 0 28px 4px rgba(0,0,0,0.1);
+    transition: transform .3s ease;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .form-control {
+      border-radius: 4px;
+  }
+
+  .form-label {
+      float: left;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+  }
+
+  #sell-btn {
+      margin-top: 20px;
+      padding: 8px 50px;
+      background-color: white;
+      border: 1px solid #0275d8;
+      color: #0275d8
+  }
+
+  #sell-btn:hover {
+    background-color: #0275d8;
+    color: white;
+}
+
+#sell-tag {
+    font-size: 24px;
+}
+

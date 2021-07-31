@@ -1,6 +1,6 @@
 .hero-section {
     padding: 15vh 60px 15vh 60px;
-    height: 100vh;
+    height: 93vh;
     background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
   /* background-size: cover;
   background-repeat: no-repeat; */
@@ -9,7 +9,7 @@
 
 .hero-content {
     width: 500px;
-    padding: 120px  60px 0px 0px;
+    padding: 50px  60px 0px 0px;
     min-width: 700px;
 }
 
@@ -25,7 +25,11 @@
 }
 
 .hero-form {
-    float: left;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 120px;
+    font-weight: 200;
 }
 
 .ledgerButton {
@@ -65,4 +69,15 @@
 #ledgerBtn:hover {
     background-color: #0275d8;
     color: white;
-  }
+}
+
+.link {
+    display: block;
+    text-align: left;
+    
+}
+
+.link a {
+    font-weight: 500;
+    text-decoration: none;
+}

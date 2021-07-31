@@ -139,7 +139,7 @@ class App extends Component {
             <Route exact path='/profile'>
               <ProfilePage props={this.state} />
             </Route>
-            <Route exact path='/about'>
+            <Route exact path='c'>
               <AboutPage />
             </Route>
             <Route exact path='/market'>

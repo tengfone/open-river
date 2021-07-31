@@ -1,12 +1,11 @@
 import { React, useState } from 'react'
-import '../App.css'
-import "./AssetList.css";
 import Form from 'react-bootstrap/Form';
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Spinner, Row, Col } from 'react-bootstrap';
 import { randomUrls } from '../constants';
 import Web3 from 'web3'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./Sellpage.css"
 
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -20,6 +19,7 @@ function Sellpage({ props, updateParentState }) {
     const [errors, setErrors] = useState({})
     const [convertedEth, setConvertedEth] = useState(0)
     const [showSpinner, setShowSpinner] = useState(false)
+    const [img, setimg] = useState(null)
 
     const uploadArtwork = (name, price, description, imageHash) => {
         openRiver.methods.uploadArtwork(name, price, description, imageHash)
@@ -133,49 +133,59 @@ function Sellpage({ props, updateParentState }) {
     }
 
     return (
-        <div className='d-flex flex-column align-items-center'>
-            <h1>Sell</h1>
-            <Form style={{ width: '300px' }}>
-                <Form.Group>
-                    <Form.Label>Item Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        onChange={e => setField('name', e.target.value)}
-                        isInvalid={!!errors.name}
-                    />
-                    <Form.Control.Feedback type='invalid'>{errors.name}</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="formFile">
+        <div className='form-section'>
+            <p id="sell-tag">With Open River, submitting an artwork has never been easier</p>
+            <div className="form-submit">
+            <div className="card-sell" >
+                <div className="card-image"><img src={img} /></div>
+            </div>
+            <div>
+
+            
+            <Form>
+                <Row className="mb-2">
+                    <Form.Group as={Col}>
+                        <Form.Label>Item Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            onChange={e => setField('name', e.target.value)}
+                            isInvalid={!!errors.name}
+                        />
+                        <Form.Control.Feedback type='invalid'>{errors.name}</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group controlId="formFile" as={Col}>
                     <Form.Label>Upload File Image</Form.Label>
                     <Form.Control onChange={e => {
                         setField('file', e.target.files)
+                        setimg(URL.createObjectURL(e.target.files[0]))
                         captureFile(e)
                     }} isInvalid={!!errors.file} type="file" />
                     <Form.Control.Feedback type='invalid'>{errors.file}</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>Price (SGD)</Form.Label>
-                    <Form.Control
-                        type='text'
-                        onChange={e => {
-                            setField('price', e.target.value)
-                            sgdToEtherum(e.target.value)
-                        }}
-                        isInvalid={!!errors.price}
+                </Row>
+                <Row className="mb-2">
+                    <Form.Group as={Col}>
+                        <Form.Label>Price (SGD)</Form.Label>
+                        <Form.Control
+                            type='text'
+                            onChange={e => {
+                                setField('price', e.target.value)
+                                sgdToEtherum(e.target.value)
+                            }}
+                            isInvalid={!!errors.price}
+                        />
+                        <Form.Control.Feedback type='invalid'>{errors.price}</Form.Control.Feedback>
+                    </Form.Group>
+                        <Form.Group as={Col}>
+                        <Form.Label>Converted to Etherum (Ξ)*</Form.Label>
+                        <Form.Control
+                            type='text'
+                            disabled
+                            placeholder={convertedEth}
                     />
-                    <Form.Control.Feedback type='invalid'>{errors.price}</Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Converted to Etherum (Ξ)*</Form.Label>
-                    <Form.Control
-                        type='text'
-                        disabled
-                        placeholder={convertedEth}
-                    />
-                </Form.Group>
-                <p>* Conversion rate is hardcoded</p>
-                <Form.Group>
+                    </Form.Group>
+                </Row>                
+                <Form.Group className="mb-3">
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                         as='textarea'
@@ -184,8 +194,10 @@ function Sellpage({ props, updateParentState }) {
                     />
                     <Form.Control.Feedback type='invalid'>{errors.description}</Form.Control.Feedback>
                 </Form.Group>
-                <Button type='submit' onClick={handleSubmit}>Sell!</Button>
+                <Button id="sell-btn" type='submit' onClick={handleSubmit}>Sell</Button>
             </Form>
+            </div>
+            </div>
             <ToastContainer />
             {
                 showSpinner && (
@@ -195,6 +207,7 @@ function Sellpage({ props, updateParentState }) {
                     </div>
                 )
             }
+            
         </div>
     )
 }
