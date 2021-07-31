@@ -137,7 +137,7 @@ function Sellpage({ props, updateParentState }) {
             <p id="sell-tag">With Open River, submitting an artwork has never been easier</p>
             <div className="form-submit">
             <div className="card-sell" >
-                <div className="card-image"><img src={img} /></div>
+                <div className="card-sell-img"><img src={img} /></div>
             </div>
             <div>
 

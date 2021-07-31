@@ -19,7 +19,7 @@ Form {
     width: 600px;
 }
 
-.card-image img {
+.card-sell-img img {
     width: 100%;
     height: 515px;
     object-fit: cover;
