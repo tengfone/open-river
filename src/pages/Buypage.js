@@ -57,7 +57,7 @@ const Buypage = ({ props }) => {
     // }
 
     return (
-        <div className="buy-bg" style={props.totalArtwork.length >= 5 ? {height:"100%"} :  {height:"93vh"}}>
+        <div className="buy-bg" style={props.totalArtwork.length >= 4 ? {height:"100%"} :  {height:"93vh"}}>
             <div className="buy-section">
                 <p id="buypageTag">Choose from a myraid of original assets made curated by creative individuals</p>
                 {/* {error && <div>{error}</div>}
