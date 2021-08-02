@@ -1,14 +1,12 @@
-// const { assert } = require('chai');
 require('chai').use(require('chai-as-promised')).should()
 const OpenRiver = artifacts.require('./OpenRiver.sol')
-
+//Deploying Contract
 contract('OpenRiver',([deployer,seller,buyer]) =>{
 	let productCount
 	before(async () => {
     this.OpenRiver = await OpenRiver.deployed()
-    
   })
-
+//Test to check if contract was deployed sucessfully
 	it('deploys successfully', async () => {
 	    const address = await this.OpenRiver.address
 	    assert.notEqual(address, 0x0)
@@ -16,11 +14,12 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 	    assert.notEqual(address, null)
 	    assert.notEqual(address, undefined)
   	})
+//Uploading test artwork 
   	before(async () => {
-  	result = await this.OpenRiver.uploadArtwork('Testname', web3.utils.toWei('1', 'Ether'), 'TestHash',{from: seller})
+  	result = await this.OpenRiver.uploadArtwork('Testname', web3.utils.toWei('1', 'Ether'),'descp', 'TestHash',{from: seller})
   	productCount = await this.OpenRiver.artworkCount()
   })
-  	//testing upload Artwork
+//testing uploadArtwork function
   	it('create artwork', async () => {
   
 	  assert.equal(productCount, 1)
@@ -31,20 +30,23 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 	  assert.equal(event.owner, seller, 'owner is correct')
 	  assert.equal(event.isPurchased, false, 'purchase is correct')
 	  assert.equal(event.imgHash,'TestHash')
-	  await this.OpenRiver.uploadArtwork('', web3.utils.toWei('1', 'Ether'), {from: seller}).should.be.rejected
-	  await this.OpenRiver.uploadArtwork('', 0, {from: seller}).should.be.rejected
+	  assert.equal(event.description,'descp')
+	  //test cases that would throw errors
+	  await this.OpenRiver.uploadArtwork('', web3.utils.toWei('1', 'Ether'), '',{from: seller}).should.be.rejected
+	  await this.OpenRiver.uploadArtwork('', 0,'', {from: seller}).should.be.rejected
 
 })
-  	// testing putchaseProduct
+//  	testing purchaseProduct function
   	  	it('sell product', async () => {
   
-  	  		//check seller balance
+  	  		//check initial seller balance
   	  		let sellerOldBalance
   	  		oldBalanceOfSeller =  await web3.eth.getBalance(seller);
       		oldBalanceOfSeller = new web3.utils.BN(oldBalanceOfSeller);
       		let oldBalanceofBuyer
       		oldBalanceofBuyer = await web3.eth.getBalance(buyer);
-      		console.log(oldBalanceofBuyer)
+      		// console.log(oldBalanceofBuyer)
+      		//Purchasing test Product
 			result = await this.OpenRiver.purchaseProduct(productCount, {from: buyer, value: web3.utils.toWei('1', 'Ether')});
 			const event = result.logs[0].args;
 			assert.equal(event.id.toNumber(), productCount.toNumber(), 'id is correct');
@@ -53,7 +55,7 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 			assert.equal(event.owner, buyer, 'buyer is correct');
 			assert.equal(event.isPurchased, true, 'purchase is correct');
 
-			//check seller after balance
+			//check final seller balance
 			let newBalanceOfSeller;
 			newBalanceOfSeller =  await web3.eth.getBalance(seller);
 			newBalanceOfSeller = new web3.utils.BN(newBalanceOfSeller);
@@ -61,34 +63,12 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 			price = web3.utils.toWei('1','Ether');
 			price = new web3.utils.BN(price);
 			newBalanceofBuyer = await web3.eth.getBalance(buyer)
-			console.log(newBalanceofBuyer)
-			console.log(oldBalanceOfSeller.toString())
-			console.log(newBalanceOfSeller.toString())
+			// console.log(newBalanceofBuyer)
+			// console.log(oldBalanceOfSeller.toString())
+			// console.log(newBalanceOfSeller.toString())
 			const exceptedBalance = oldBalanceOfSeller.add(price);
+			//checking to ensure that the correct amount of balance for the seller
       		assert.equal(newBalanceOfSeller.toString(), exceptedBalance.toString());
 
 })
 })
-
-
-// contract('OpenRiver', (accounts) => {
-//   before(async () => {
-//     this.OpenRiver = await OpenRiver.deployed()
-//   })
-
-//   it('deploys successfully', async () => {
-//     const address = await this.OpenRiver.address
-//     assert.notEqual(address, 0x0)
-//     assert.notEqual(address, '')
-//     assert.notEqual(address, null)
-//     assert.notEqual(address, undefined)
-//   })
-// 	it('lists transactions', async () => {
-// 	const transactionCount = await this.OpenRiver.transactionCount()
-// 	const transaction = await this.OpenRiver.transactions(transactionCount)
-// 	assert.equal(transaction.id.toNumber(), transactionCount.toNumber())
-// 	assert.equal(transaction.value, 10)
-// 	assert.equal(task.completed, false)
-// 	assert.equal(taskCount.toNumber(), 1)
-//   })
-//   })

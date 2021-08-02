@@ -96,7 +96,7 @@ contract OpenRiver{
   	@param
   	_name: name of the artwork
   	_price: price set for the artwork
-  	_desciprtion: description of the artwork
+  	_description: description of the artwork
   	_imgHash: Hash of the image file 
   	*/
   	function uploadArtwork(string memory _name, uint _price, string memory _description,string memory _imgHash) public payable{
