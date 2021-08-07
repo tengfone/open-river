@@ -65,6 +65,7 @@
     font-size: 16px;
     padding: 10px 32px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .sellText {
@@ -73,6 +74,7 @@
     font-size: 16px;
     padding: 10px 32px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .marketplace-section {
