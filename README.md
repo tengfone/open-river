@@ -87,7 +87,7 @@ truffle migrate --network rinkeby --reset --compile-all
 
 ## Preview
 
-[![Demo](https://gifs.com/gif/288o0W)](https://www.youtube.com/watch?v=xTbkRUNYkqI)  
+[![Demo](https://j.gifs.com/288o0W.gif)](https://www.youtube.com/watch?v=xTbkRUNYkqI)  
 
 ## FrontEnd
 
