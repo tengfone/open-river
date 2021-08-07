@@ -13,16 +13,14 @@
 
 .description {
     display: inline-block;
-    padding: 50px;
-    width: 1000px;
-}
-
-h1 {
+    padding: 45px;
+    width: 1200px;
     font-size: 33px;
     background: -webkit-linear-gradient(#eee, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 
 .footer {
     position:absolute;
