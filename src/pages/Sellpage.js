@@ -123,7 +123,7 @@ function Sellpage({ props, updateParentState }) {
         //     newErrors.file = 'Upload an image!'
         // }
         // price errors
-        if (!price || price < 0) newErrors.price = 'Must be more than 0 SGD'
+        if (!price || price < 0 || price > 1000000000) newErrors.price = 'Must be between $0-1B SGD'
         else if (!price.match(validPrice)) {
             newErrors.price = 'Must be in the form x.x'
         }
