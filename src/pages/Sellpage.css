@@ -10,7 +10,8 @@
 .form-submit {
     display: flex;
     justify-content: space-evenly;
-    padding: 0px 100px;
+    padding: 0px 250px;
+    min-width: 1346px;
     /* max-width: 1180px; */
 }
 
@@ -27,9 +28,9 @@ Form {
   }
 
 .card-sell {
-    min-width: 100px;
+    min-width: 377px;
     background-color: white;
-    margin: 2rem 2rem 0 0;
+    margin: 2rem ;
     padding: 0.7rem;
     width: 400px;
     height: 538px;

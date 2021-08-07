@@ -22,7 +22,7 @@ function Profilepage({ props }) {
                         <p>{Number(ethBalance).toFixed(2)}</p>
                     </div>
                 </div>
-                <div className="profile" style={props.myArtWorks.length == 0 ? {height: "53vh"} : {height: "100%"}}>
+                <div className="profile">
                     <div className="profile-img">
                         <img src={profileImage} alt="Avatar" className="avatar" />
                         <div className="profile-details">

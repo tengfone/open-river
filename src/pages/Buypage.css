@@ -10,6 +10,6 @@
 
 .buy-bg{
   padding-bottom: 10px;
-  height: 100%;
+  min-height: 93vh;
   background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
 }

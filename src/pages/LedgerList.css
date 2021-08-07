@@ -115,4 +115,5 @@ p {
     background-image: linear-gradient(to bottom right, #E1EEBC, #BCD9EE);
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 93vh;
 }
