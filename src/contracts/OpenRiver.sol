@@ -87,9 +87,6 @@ contract OpenRiver{
 		string imgHash
 	);
 
-	constructor() public {
-    	productName = "Project";
-  	}
   	/*
   	@title uploadArtwork
   	@notice This function is to upload the artwork into the blockchain
@@ -102,6 +99,7 @@ contract OpenRiver{
   	function uploadArtwork(string memory _name, uint _price, string memory _description,string memory _imgHash) public payable{
   		require(bytes(_name).length > 0);
   		require(_price > 0);
+  		require(_price < (2**256)- 1);
   		require(bytes(_imgHash).length > 0);
 		require(bytes(_description).length > 0);
   		address payable _sender;
@@ -126,12 +124,12 @@ contract OpenRiver{
  		require(!_artwork.isPurchased);
  		require(_seller != msg.sender, "This is his own artwork!");
   		transactionCount ++;
-  		_seller.transfer(msg.value);
   		_artwork.isPurchased = true;
   		transactions[transactionCount] = Transaction(transactionCount,_artwork.price,_artwork.owner,_sender,_artwork.imgHash);
   		_artwork.owner = payable(msg.sender);
   		artworks[_id] = _artwork;
   		emit ArtworkSold(artworkCount,_artwork.name,_artwork.price,_sender,true,_artwork.description,_artwork.imgHash);
+  		_seller.transfer(msg.value);
   	}
   	
 }
