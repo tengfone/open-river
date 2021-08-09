@@ -44,7 +44,7 @@ const LedgerList = ({allTx}) => {
                                 GAS PRICE
                             </div>
                             <div className="gas-val">
-                                {Number((web3.utils.fromWei(tx.gasPrice, 'ether'))).toFixed(3)}
+                                {Number((web3.utils.fromWei(tx.gasPrice, 'ether'))).toFixed(9)}
                             </div>
                         </div>
                     </div>

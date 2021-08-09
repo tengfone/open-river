@@ -21,28 +21,34 @@ function Sellpage({ props, updateParentState }) {
     const [showSpinner, setShowSpinner] = useState(false)
     const [img, setimg] = useState(null)
 
-    const uploadArtwork = (name, price, description, imageHash) => {
-        openRiver.methods.uploadArtwork(name, price, description, imageHash)
+    function uploadArtwork (name, price, description, imageHash) {
+        return new Promise(resolve => {
+            openRiver.methods.uploadArtwork(name, price, description, imageHash)
             .send({ from: account })
             .once('receipt', (receipt) => {
                 updateParentState(receipt.events.ArtworkCreated.returnValues)
-                toast.success('🎉 Success', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-                setTimeout(() => {
-                    setShowSpinner(false)
-                    window.location.reload()
-                }, 2000);
-            }).on('error', (error) => {
-                console.log(error);
-            });;
-    }
+                // toast.success('🎉 Success', {
+                //     position: "top-center",
+                //     autoClose: 5000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                // });
+                if (receipt.status) {
+                    resolve(200)
+                }
+        }).on('error', (error) => {
+            if (error.code === 4001) {
+                resolve(4001)
+            } else {
+                resolve(404)
+            }
+            console.log('receipt', error)
+        })
+    })
+}
 
     const captureFile = (event) => {
         // Process file for IPFS
@@ -86,7 +92,7 @@ function Sellpage({ props, updateParentState }) {
         return result
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         // get our new errors
         const newErrors = findFormErrors()
@@ -102,8 +108,49 @@ function Sellpage({ props, updateParentState }) {
             toIPFS().then((res) => {
                 // Example hash: QmWxpa7VASM1own9Ey3CSxNKu7Ez55Rp99Vk8SC2B3z7bt
                 // Example url: https://ipfs.infura.io/ipfs/{hash}
-                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth, 'ether'), form.description, res.path)
-            }
+                uploadArtwork(form.name, window.web3.utils.toWei(convertedEth, 'ether'), form.description, res.path).then((status) => {
+                    if (status === 200) {
+                        toast.success('🎉 Success', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                          setTimeout(() => {
+                            setShowSpinner(false)
+                            window.location.reload();
+                          }, 2000);
+                    }
+                    if (status === 4001) {
+                        // User Decline
+                        toast.warning('❗ Whoops User Decline', {
+                          position: "top-center",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                        });
+                        setShowSpinner(false)
+                      }
+                }).catch(err => {
+                    console.log(err)
+                    setShowSpinner(false)
+                    toast.error('❗ Error Something Went Really Wrong', {
+                      position: "top-center",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    });
+                  })
+                }
             )
         }
     }

@@ -2,7 +2,10 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Web3 from 'web3'
 import { Component } from 'react';
+import { FaPlus } from 'react-icons/fa';
 
+
+// BsX
 // Abis
 import OpenRiver from './abis/OpenRiver.json'
 
@@ -19,6 +22,7 @@ import BuyPage from './pages/Buypage'
 import SellPage from './pages/Sellpage'
 
 class App extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -28,14 +32,27 @@ class App extends Component {
       totalArtwork: [],
       loading: true,
       allTransactions: [],
-      myArtWorks: []
+      myArtWorks: [],
+      networkStatusDisplay: "block",
+      networkName: "rinkeby"
     }
+    this.hideNetworkStatus = this.hideNetworkStatus.bind(this);
   }
   async componentDidMount() {
     await this.loadWeb3()
+    await this.getNetwork()
     await this.loadBlockchainData()
     await this.pullAllTransactions()
   }
+
+  async getNetwork() {
+    const web3 = window.web3
+    const network = await web3.eth.net.getNetworkType()
+    this.setState({
+      networkName: network
+    })
+  }
+
 
   async loadBlockchainData() {
     const web3 = window.web3
@@ -92,6 +109,7 @@ class App extends Component {
           }
         }
       );
+    
 
     //// These codes pull ALL transcation from the blockchain. Not recommended
     // const latest = await web3.eth.getBlockNumber()
@@ -121,10 +139,17 @@ class App extends Component {
     else {
       window.alert('Non-Ethereum browser detected. Please download MetaMask!')
     }
+   
   }
 
   handleTotalArtwork = (newArtWorkArray) => {
     this.setState({ totalArtwork: [...this.state.totalArtwork, newArtWorkArray] })
+  }
+
+  hideNetworkStatus() {
+    this.setState({
+      networkStatusDisplay: "none"
+    })
   }
 
   render() {
@@ -132,8 +157,19 @@ class App extends Component {
       <div className="App">
         <Router>
           <Header account={this.state.account} />
+         
           <Switch>
             <Route exact path='/'>
+            {this.state.networkName == "rinkeby" ? 
+            <div className="networkbar" style={{display: this.state.networkStatusDisplay}}>
+              <p>Welcome to Open River! You are successfully connected to the {this.state.networkName} Network</p>
+              <button className="copy-btn" onClick={this.hideNetworkStatus}><FaPlus /></button>
+            </div> :
+            <div className="errorBar" style={{display: this.state.networkStatusDisplay}}>
+            <p>Opps sorry! Open River does not support {this.state.networkName} network</p>
+            <button className="copy-btn" onClick={this.hideNetworkStatus}><FaPlus /></button>
+          </div> 
+            }
               <HomePage />
             </Route>
             <Route exact path='/profile'>
