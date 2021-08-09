@@ -86,12 +86,14 @@
   
 }
 
-.copy-btn {
+.close-btn {
   position: absolute;
   top: 6px;
   right: 15px;
   color: white;
   transform: rotate(45deg);
+  background-color: transparent;
+  border: none;
 }
 
 .ledger-section {

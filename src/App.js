@@ -163,11 +163,11 @@ class App extends Component {
             {this.state.networkName == "rinkeby" ? 
             <div className="networkbar" style={{display: this.state.networkStatusDisplay}}>
               <p>Welcome to Open River! You are successfully connected to the {this.state.networkName} Network</p>
-              <button className="copy-btn" onClick={this.hideNetworkStatus}><FaPlus /></button>
+              <button className="close-btn" onClick={this.hideNetworkStatus}><FaPlus /></button>
             </div> :
             <div className="errorBar" style={{display: this.state.networkStatusDisplay}}>
             <p>Opps sorry! Open River does not support {this.state.networkName} network</p>
-            <button className="copy-btn" onClick={this.hideNetworkStatus}><FaPlus /></button>
+            <button className="close-btn" onClick={this.hideNetworkStatus}><FaPlus /></button>
           </div> 
             }
               <HomePage />

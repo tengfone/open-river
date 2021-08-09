@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-import profileImage from '../assets/orprofile.png'
+import profileImage from '../assets/orprofile.gif'
 import './Profilepage.css'
 import { FaRegCopy } from 'react-icons/fa';
 import ethIcon from '../assets/eth_icon.svg'
@@ -24,11 +24,11 @@ function Profilepage({ props }) {
                 </div>
                 <div className="profile">
                     <div className="profile-img">
-                        <img src={profileImage} alt="Avatar" className="avatar" />
+                        <img src={profileImage} alt="Avatar" className="avatar" width="200"/>
                         <div className="profile-details">
                             <div className="copy-address">
                                 <p>{account.substring(0, 6)}...{account.slice(-4)}</p>
-                                <button className="copy-btn" onClick={() => navigator.clipboard.writeText(account)}><FaRegCopy /></button>
+                                <button className="copy-address" onClick={() => navigator.clipboard.writeText(account)}><FaRegCopy /></button>
                             </div>
                         </div>
                     </div>
