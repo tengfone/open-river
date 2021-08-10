@@ -106,13 +106,11 @@ The Front end is written in ReactJS and wallet be powered by MetaMask, a browser
 | uploadArtwork(string memory _name, uint _price, string memory _description,string memory _imgHash) | Uploading of artwork       |
 | purchaseProduct(uint _id)                                                                          | Purchasing of each artwork |
 ## Test Cases
-| Test Case                    | Description                                     | Test Steps                                                                                                     | Expected Outcome |
-|------------------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------|------------------|
-| Deployment of Smart Contract | Check for deployment of smart contract          | Deploy Smart Contract onto blockchain                                                                          | True             |
-| Create Artwork               | Creation of Artwork and appending to blockchain | 1.  Upload Artwork with parameters name:"Testname", price:"1ETH",description:"testing",hash:"hash",seller:0x00 | True             |
-|                              |                                                 |                                                                                                                |                  |
-|                              |                                                 |                                                                                                                |                  |
-
+| Test Case | Description | Test Steps | Expected Outcome |
+|---|---|---|---|
+| Deployment of Smart Contract | Check for deployment of smart contract | Deploy Smart Contract on blockchain | True |
+| Create Artwork | Creation of Artwork and appending to blockchain | 1. Upload Artwork with parameters name:"Testname", price:"1ETH",description:"descp",hash:"Testhash" <br/> 2. Check logs in output of function Id Name Owner address isPurchased Imghash Description <br/> 3. 2 negative test cases(Should be rejected) <br/> Case 1: Did not feed imageHash param <br/> Case 2 : name/descp field is empty <br/> Case 3: 0 wei fed as price of artwork | True |
+| Purchase Product | Buying an artwork, transferring ownership from seller to buyer, transferring price of artwork from buyer to seller | Purchase Product with ID,last ID in product mapping <br/> Check new owner is the same address as buyer’s address <br/> Check the balance of the seller is expected(oldBalance+Price of artwork) | True |
 ## Summary
 We would like to attribute that Open River is inspired by [OpenSea](https://opensea.io/). 
 Future works can be explored such as having the type of digital assets, etc.
