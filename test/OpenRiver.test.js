@@ -32,8 +32,12 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 	  assert.equal(event.imgHash,'TestHash')
 	  assert.equal(event.description,'descp')
 	  //test cases that would throw errors
-	  await this.OpenRiver.uploadArtwork('', web3.utils.toWei('1', 'Ether'), '',{from: seller}).should.be.rejected
-	  await this.OpenRiver.uploadArtwork('', 0,'', {from: seller}).should.be.rejected
+	  //Invalid test case 1: missing param,ImgHash
+	  await this.OpenRiver.uploadArtwork('Testname', web3.utils.toWei('1', 'Ether'),'descp',{from: seller}).should.be.rejected
+	  //Invalid test case 2: empty name
+	  await this.OpenRiver.uploadArtwork('', web3.utils.toWei('1', 'Ether'),'descp','TestHash', {from: seller}).should.be.rejected
+	  //Invalid test case 3: 0 Wei for price of artwork
+	  await this.OpenRiver.uploadArtwork('Testname', 0,'descp','TestHash', {from: seller}).should.be.rejected
 
 })
 //  	testing purchaseProduct function
@@ -43,15 +47,17 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
   	  		let sellerOldBalance
   	  		oldBalanceOfSeller =  await web3.eth.getBalance(seller);
       		oldBalanceOfSeller = new web3.utils.BN(oldBalanceOfSeller);
+
       		let oldBalanceofBuyer
       		oldBalanceofBuyer = await web3.eth.getBalance(buyer);
-      		// console.log(oldBalanceofBuyer)
+      		oldBalanceofBuyer = new web3.utils.BN(oldBalanceofBuyer)
       		//Purchasing test Product
 			result = await this.OpenRiver.purchaseProduct(productCount, {from: buyer, value: web3.utils.toWei('1', 'Ether')});
 			const event = result.logs[0].args;
 			assert.equal(event.id.toNumber(), productCount.toNumber(), 'id is correct');
 			assert.equal(event.name, 'Testname', 'name is correct');
 			assert.equal(event.price, '1000000000000000000', 'price is correct');
+			//checking that owner of artwork has been transferred to the buyer
 			assert.equal(event.owner, buyer, 'buyer is correct');
 			assert.equal(event.isPurchased, true, 'purchase is correct');
 
@@ -62,13 +68,9 @@ contract('OpenRiver',([deployer,seller,buyer]) =>{
 			let price;
 			price = web3.utils.toWei('1','Ether');
 			price = new web3.utils.BN(price);
-			newBalanceofBuyer = await web3.eth.getBalance(buyer)
-			// console.log(newBalanceofBuyer)
-			// console.log(oldBalanceOfSeller.toString())
-			// console.log(newBalanceOfSeller.toString())
-			const exceptedBalance = oldBalanceOfSeller.add(price);
+			const exceptedBalanceSeller = oldBalanceOfSeller.add(price);
 			//checking to ensure that the correct amount of balance for the seller
-      		assert.equal(newBalanceOfSeller.toString(), exceptedBalance.toString());
+      		assert.equal(newBalanceOfSeller.toString(), exceptedBalanceSeller.toString());
 
 })
 })
