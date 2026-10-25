@@ -62,9 +62,14 @@ npm install
 ```
 REACT_APP_ETHERSCAN_TOKEN=GETFROMETHERSCAN
 ```
-Then you can ```npm run start``` to start the frontend server.
+Then you can ```npm run start``` to start the frontend server. The frontend is built with [Vite](https://vite.dev/): ```npm run build``` outputs to ```build/``` and ```npm run preview``` serves that build locally.
 
 ### Smart Contracts
+The contract tooling (Truffle, the HD wallet provider, dotenv and the chai test helpers) is not part of the front-end dependencies, so install it separately before running the commands below:
+```bash
+npm install -g truffle@5
+npm install --no-save truffle-hdwallet-provider dotenv chai@4 chai-as-promised@7
+```
 ##### For development (Only if Ganache is connected locally):  
 ```bash
 truffle migrate --reset

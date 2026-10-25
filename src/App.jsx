@@ -47,7 +47,9 @@ class App extends Component {
 
   async getNetwork() {
     const web3 = window.web3
-    const network = await web3.eth.net.getNetworkType()
+    // web3 v4 dropped eth.net.getNetworkType(); map the network id to the same names it returned
+    const networkNames = { 1: 'main', 2: 'morden', 3: 'ropsten', 4: 'rinkeby', 5: 'goerli', 42: 'kovan' }
+    const network = networkNames[Number(await web3.eth.net.getId())] || 'private'
     this.setState({
       networkName: network
     })
@@ -95,9 +97,8 @@ class App extends Component {
   }
 
   async pullAllTransactions() {
-    require('dotenv').config()
     const web3 = window.web3
-    const apiToken = process.env.REACT_APP_ETHERSCAN_TOKEN
+    const apiToken = import.meta.env.REACT_APP_ETHERSCAN_TOKEN
     fetch(`https://api-rinkeby.etherscan.io/api?module=account&action=txlist&address=${this.state.account}&startblock=0&endblock=99999999&sort=asc&apikey=${apiToken}`)
       .then((response) => response.json())
       .then((data) =>

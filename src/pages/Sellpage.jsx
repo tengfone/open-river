@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./Sellpage.css"
 
-const ipfsClient = require('ipfs-http-client')
+import { create as ipfsClient } from 'kubo-rpc-client'
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 function Sellpage({ props, updateParentState }) {
@@ -39,7 +39,7 @@ function Sellpage({ props, updateParentState }) {
                 if (receipt.status) {
                     resolve(200)
                 }
-        }).on('error', (error) => {
+        }).catch((error) => { // web3 v4 rejects the PromiEvent instead of emitting 'error' for wallet rejections (code 4001)
             if (error.code === 4001) {
                 resolve(4001)
             } else {
@@ -58,7 +58,7 @@ function Sellpage({ props, updateParentState }) {
         reader.onloadend = () => {
             setForm({
                 ...form,
-                buffer: Buffer(reader.result)
+                buffer: new Uint8Array(reader.result)
             })
         }
     }

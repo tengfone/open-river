@@ -24,7 +24,7 @@ const Buypage = ({ props }) => {
                         resolve(200)
                     }
                 })
-                .on('error', (error) => {
+                .catch((error) => { // web3 v4 rejects the PromiEvent instead of emitting 'error' for wallet rejections (code 4001)
                     if (error.code === 4001) {
                         resolve(4001)
                     } else {

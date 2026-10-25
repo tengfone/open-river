@@ -4,54 +4,29 @@
   "private": true,
   "author": "ERC-1",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "bootstrap": "^4.6.0",
-    "chai": "^4.3.4",
-    "chai-as-promised": "^7.1.1",
-    "dotenv": "^8.2.0",
-    "ipfs-http-client": "^48.2.2",
+    "kubo-rpc-client": "^7.1.0",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.1",
+    "react-bootstrap": "^1.6.8",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^5.3.4",
     "react-toastify": "^7.0.4",
-    "truffle-hdwallet-provider": "^1.0.17",
-    "web-vitals": "^1.0.1",
-    "web3": "^1.4.0"
+    "web3": "^4.16.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "json": "npx json-server --watch data/placeholderdb.json --port 8000",
     "river": "concurrently \"npm run start\" \"npm run json\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "concurrently": "^6.2.0",
-    "truffle": "5.4.2",
-    "truffle-contract": "3.0.6"
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "vite": "^8.3.5"
+  },
+  "type": "module",
+  "overrides": {
+    "zod": "^4.6.7"
   }
 }
